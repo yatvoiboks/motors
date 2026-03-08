@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import HeroSection from '../components/HeroSection.astro';
+---
+
+<BaseLayout title="Contact Us | Product Catalog" description="Get in touch for product quotes, technical support and partnership inquiries.">
+  <Navbar />
+  <main>
+    <HeroSection title="Contact Us" subtitle="Request a quote or get in touch with our team." />
+
+    <section class="py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-xl border border-slate-200 p-8 shadow-sm">
+          <h2 class="text-xl font-semibold text-primary mb-6">Get in Touch</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-sm font-medium text-slate-500 uppercase tracking-wider">Email</h3>
+              <a href="mailto:sales@company.com" class="mt-1 block text-accent font-medium hover:underline">sales@company.com</a>
+              <p class="mt-1 text-sm text-slate-600">For quotes and product inquiries</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-medium text-slate-500 uppercase tracking-wider">Business Hours</h3>
+              <p class="mt-1 text-slate-600">Monday - Friday: 9:00 - 18:00</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-medium text-slate-500 uppercase tracking-wider">Request a Quote</h3>
+              <p class="mt-1 text-slate-600 mb-4">Include product names and quantities for faster response.</p>
+              <a
+                href="mailto:sales@company.com?subject=Quote%20Request"
+                class="inline-flex items-center px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-emerald-600 transition-colors"
+              >
+                Send Email
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

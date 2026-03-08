@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import SpecTable from '../../components/SpecTable.astro';
+import products from '../../data/products.json';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const quoteSubject = encodeURIComponent(`Quote request for ${product.name}`);
+const mailtoUrl = `mailto:sales@company.com?subject=${quoteSubject}`;
+---
+
+<BaseLayout
+  title={`${product.name} | Product Catalog`}
+  description={product.description}
+  image={product.image}
+>
+  <Navbar />
+  <main class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="mb-8 text-sm text-slate-600">
+        <a href="/" class="hover:text-accent">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/catalog" class="hover:text-accent">Catalog</a>
+        <span class="mx-2">/</span>
+        <span class="text-primary font-medium">{product.name}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <ProductGallery
+          name={product.name}
+          image={product.image}
+          images={product.images}
+        />
+
+        <div>
+          <span class="text-sm font-medium text-accent uppercase tracking-wider">{product.category}</span>
+          <h1 class="mt-2 text-3xl font-bold text-primary">{product.name}</h1>
+
+          <div class="mt-8">
+            <h2 class="text-lg font-semibold text-primary mb-4">Specifications</h2>
+            <SpecTable specs={product.specs} />
+          </div>
+
+          <div class="mt-8">
+            <h2 class="text-lg font-semibold text-primary mb-4">Description</h2>
+            <p class="text-slate-600 leading-relaxed">{product.description}</p>
+          </div>
+
+          <a
+            href={mailtoUrl}
+            class="mt-10 inline-flex items-center px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors shadow-sm"
+          >
+            Request Quote
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

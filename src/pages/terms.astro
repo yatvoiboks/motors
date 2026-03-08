@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Terms of Use | Product Catalog" description="Terms of use for the Product Catalog website." noindex={true}>
+  <Navbar />
+  <main class="py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold text-primary mb-8">Terms of Use</h1>
+      <div class="prose prose-slate text-slate-600 space-y-4">
+        <p>Last updated: March 2025</p>
+        <p>
+          This website is a product catalog for informational purposes. By using this website, you agree to
+          these terms. All product information is subject to change. We make no warranties regarding accuracy
+          of product specifications. Contact us for current pricing and availability.
+        </p>
+        <p>
+          This catalog is intended for B2B customers. Use of product images and descriptions without
+          permission is prohibited. All content is property of the respective owners.
+        </p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

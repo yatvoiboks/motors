@@ -1,0 +1,53 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-primary text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Company -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">ProductCatalog</h3>
+        <p class="text-sm text-slate-400">
+          Professional B2B catalog for UAV propulsion components. Request quotes for your industrial and commercial projects.
+        </p>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h4 class="text-white font-medium mb-4">Products</h4>
+        <ul class="space-y-2">
+          <li><a href="/catalog/motors" class="text-sm hover:text-accent transition-colors">Motors</a></li>
+          <li><a href="/catalog/propellers" class="text-sm hover:text-accent transition-colors">Propellers</a></li>
+          <li><a href="/catalog/escs" class="text-sm hover:text-accent transition-colors">ESCs</a></li>
+          <li><a href="/catalog/systems" class="text-sm hover:text-accent transition-colors">Systems</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div>
+        <h4 class="text-white font-medium mb-4">Help & Support</h4>
+        <ul class="space-y-2">
+          <li><a href="/contact" class="text-sm hover:text-accent transition-colors">Contact Us</a></li>
+          <li><a href="/terms" class="text-sm hover:text-accent transition-colors">Terms of Use</a></li>
+          <li><a href="/privacy" class="text-sm hover:text-accent transition-colors">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white font-medium mb-4">Contact</h4>
+        <ul class="space-y-2 text-sm">
+          <li>Email: <a href="mailto:sales@company.com" class="text-accent hover:underline">sales@company.com</a></li>
+          <li>Mon - Fri: 9:00 - 18:00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-slate-700">
+      <p class="text-sm text-slate-500 text-center">
+        © {currentYear} ProductCatalog. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

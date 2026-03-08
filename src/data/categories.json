@@ -1,0 +1,9 @@
+[
+  { "id": "all", "name": "All Products", "slug": "all" },
+  { "id": "motors", "name": "Motors", "slug": "motors" },
+  { "id": "propellers", "name": "Propellers", "slug": "propellers" },
+  { "id": "escs", "name": "ESCs", "slug": "escs" },
+  { "id": "vtol", "name": "VTOL", "slug": "vtol" },
+  { "id": "fixed-wing", "name": "Fixed-Wing", "slug": "fixed-wing" },
+  { "id": "systems", "name": "Propulsion Systems", "slug": "systems" }
+]

@@ -1,0 +1,58 @@
+---
+interface Props {
+  name: string;
+  image: string;
+  images?: string[];
+}
+
+const { name, image, images = [] } = Astro.props;
+const galleryImages = images.length > 0 ? images : [image];
+---
+
+<div class="product-gallery">
+  <div class="relative bg-white rounded-xl border border-slate-200 overflow-hidden">
+    <img
+      id="gallery-main"
+      src={galleryImages[0]}
+      alt={name}
+      width="600"
+      height="600"
+      class="w-full aspect-square object-contain p-8"
+      loading="eager"
+    />
+  </div>
+  {galleryImages.length > 1 && (
+    <div class="flex gap-2 mt-4 overflow-x-auto pb-2">
+      {galleryImages.map((src, i) => (
+        <button
+          type="button"
+          data-gallery-thumb
+          data-index={i}
+          class={`flex-shrink-0 w-16 h-16 rounded-lg border-2 overflow-hidden transition-colors ${
+            i === 0 ? 'border-accent' : 'border-slate-200 hover:border-slate-300'
+          }`}
+        >
+          <img src={src} alt={`${name} view ${i + 1}`} class="w-full h-full object-contain" loading="lazy" />
+        </button>
+      ))}
+    </div>
+  )}
+</div>
+
+<script>
+  document.querySelectorAll('[data-gallery-thumb]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const main = document.getElementById('gallery-main');
+      const src = btn.querySelector('img')?.src;
+      if (main && src) {
+        main.src = src;
+        document.querySelectorAll('[data-gallery-thumb]').forEach((b) => {
+          b.classList.remove('border-accent');
+          b.classList.add('border-slate-200');
+        });
+        btn.classList.add('border-accent');
+        btn.classList.remove('border-slate-200');
+      }
+    });
+  });
+</script>

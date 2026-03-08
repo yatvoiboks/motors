@@ -1,0 +1,58 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  totalItems: number;
+  perPage: number;
+  startItem: number;
+  endItem: number;
+}
+const { currentPage, totalPages, totalItems, perPage, startItem, endItem } = Astro.props;
+---
+
+<nav class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8" aria-label="Catalog pagination">
+  <p class="text-sm text-slate-600">
+    Showing <span class="font-medium" data-pagination-start>{startItem}</span>–
+    <span class="font-medium" data-pagination-end>{endItem}</span> of
+    <span class="font-medium" data-pagination-total>{totalItems}</span> products
+  </p>
+
+  <div class="flex items-center gap-2">
+    <button
+      type="button"
+      data-pagination-prev
+      disabled={currentPage <= 1}
+      class="px-4 py-2 rounded-lg border border-slate-200 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 disabled:hover:bg-transparent transition-colors"
+    >
+      Previous
+    </button>
+    <div class="flex items-center gap-1" data-pagination-pages aria-live="polite">
+      {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+        const page = i + 1;
+        const isActive = page === currentPage;
+        return (
+          <button
+            type="button"
+            data-pagination-page
+            data-page={page}
+            class={`min-w-[2.5rem] py-2 rounded-lg text-sm font-medium transition-colors ${
+              isActive
+                ? 'bg-accent text-white'
+                : 'border border-slate-200 hover:bg-slate-50'
+            }`}
+          >
+            {page}
+          </button>
+        );
+      })}
+    </div>
+    <button
+      type="button"
+      data-pagination-next
+      disabled={currentPage >= totalPages}
+      class="px-4 py-2 rounded-lg border border-slate-200 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 disabled:hover:bg-transparent transition-colors"
+    >
+      Next
+    </button>
+  </div>
+</nav>

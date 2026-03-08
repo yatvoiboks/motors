@@ -1,0 +1,35 @@
+---
+interface Props {
+  specs: Record<string, string>;
+}
+
+const { specs } = Astro.props;
+const entries = Object.entries(specs);
+---
+
+<div class="overflow-hidden rounded-lg border border-slate-200">
+  <table class="min-w-full divide-y divide-slate-200">
+    <thead class="bg-slate-50">
+      <tr>
+        <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-primary">
+          Specification
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-primary">
+          Value
+        </th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 bg-white">
+      {entries.map(([key, value]) => (
+        <tr>
+          <td class="px-6 py-4 text-sm text-slate-600 capitalize whitespace-nowrap">
+            {key.replace(/-/g, ' ')}
+          </td>
+          <td class="px-6 py-4 text-sm font-medium text-primary">
+            {value}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

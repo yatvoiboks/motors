@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import CatalogClient from '../../components/CatalogClient.astro';
+import products from '../../data/products.json';
+import categories from '../../data/categories.json';
+
+export function getStaticPaths() {
+  return categories
+    .filter((c) => c.id !== 'all')
+    .map((cat) => ({
+      params: { category: cat.slug },
+      props: { categoryId: cat.id, categoryName: cat.name },
+    }));
+}
+
+const { categoryId, categoryName } = Astro.props;
+---
+
+<BaseLayout
+  title={`${categoryName} | Product Catalog`}
+  description={`Browse our ${categoryName.toLowerCase()} products. Search and filter to find the right products.`}
+>
+  <Navbar />
+  <main>
+    <HeroSection title={categoryName} subtitle={`Browse our range of ${categoryName.toLowerCase()} products.`} />
+
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CatalogClient products={products} categories={categories} initialCategory={categoryId} perPage={12} />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

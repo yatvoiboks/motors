@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ProductCard from '../components/ProductCard.astro';
+import products from '../data/products.json';
+
+const featuredProducts = products.slice(0, 6);
+---
+
+<BaseLayout title="Product Catalog | Professional B2B Drone Components" description="Browse our catalog of UAV motors, ESCs, propellers and propulsion systems. Request a quote for your industrial or commercial project.">
+  <Navbar />
+  <main>
+    <HeroSection
+      title="Professional UAV Propulsion Solutions"
+      subtitle="B2B product catalog for motors, ESCs, propellers and complete propulsion systems. Request a quote for your project."
+    />
+
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-2xl font-bold text-primary">Featured Products</h2>
+          <p class="mt-2 text-slate-600 max-w-2xl mx-auto">
+            Discover our range of high-performance components for industrial and commercial UAV applications.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredProducts.map((product) => (
+            <ProductCard
+              id={product.id}
+              name={product.name}
+              image={product.image}
+              description={product.description}
+              category={product.category}
+            />
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/catalog" class="inline-flex items-center px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-emerald-600 transition-colors">
+            View Full Catalog
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-primary">Quality Products</h3>
+            <p class="mt-2 text-sm text-slate-600">Professional-grade components for demanding applications</p>
+          </div>
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-primary">Request Quote</h3>
+            <p class="mt-2 text-sm text-slate-600">Contact us for pricing and availability</p>
+          </div>
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-primary">Expert Support</h3>
+            <p class="mt-2 text-sm text-slate-600">Technical assistance for your integration needs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

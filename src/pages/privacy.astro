@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Privacy Policy | Product Catalog" description="Privacy policy for the Product Catalog website." noindex={true}>
+  <Navbar />
+  <main class="py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold text-primary mb-8">Privacy Policy</h1>
+      <div class="prose prose-slate text-slate-600 space-y-4">
+        <p>Last updated: March 2025</p>
+        <p>
+          This is a static catalog website. We do not collect personal data through this site. When you contact
+          us via email, we use your contact information only to respond to your inquiry. We do not share your
+          information with third parties.
+        </p>
+        <p>
+          Our hosting provider may collect standard server logs including IP address and access times. This
+          data is used for security and analytics purposes only.
+        </p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

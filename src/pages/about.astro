@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import HeroSection from '../components/HeroSection.astro';
+---
+
+<BaseLayout title="About Us | Product Catalog" description="Learn about our company and our commitment to providing quality UAV propulsion components for B2B customers.">
+  <Navbar />
+  <main>
+    <HeroSection title="About Us" subtitle="Quality products and expert support for industrial UAV applications." />
+
+    <section class="py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate">
+        <p class="text-lg text-slate-600 leading-relaxed">
+          We are a B2B supplier of professional UAV propulsion components including motors, ESCs, propellers and
+          complete propulsion systems. Our products are designed for industrial, agricultural and commercial
+          applications.
+        </p>
+        <p class="text-slate-600 leading-relaxed">
+          With years of experience in the UAV industry, we understand the demanding requirements of professional
+          operators. Our catalog features components from trusted manufacturers, selected for reliability,
+          performance and value.
+        </p>
+        <p class="text-slate-600 leading-relaxed">
+          Whether you are building a custom drone for mapping, spraying, inspection or delivery, we can help you
+          find the right components. Contact us for technical support and custom quote requests.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

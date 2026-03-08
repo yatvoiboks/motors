@@ -1,0 +1,170 @@
+---
+import SearchBar from './SearchBar.astro';
+import CategoryFilter from './CategoryFilter.astro';
+
+interface Props {
+  products: { id: string; name: string; category: string; image: string; description: string }[];
+  categories: { id: string; name: string; slug: string }[];
+  initialCategory?: string;
+  perPage?: number;
+}
+
+const { products, categories, initialCategory = 'all', perPage = 12 } = Astro.props;
+const serialized = JSON.stringify({ products, categories, initialCategory, perPage });
+---
+
+<div id="catalog-client" class="catalog-client" data-config={serialized}>
+  <div class="mb-6">
+    <SearchBar />
+  </div>
+  <div class="mb-6">
+    <CategoryFilter categories={categories} activeCategory={initialCategory} clientFilter />
+  </div>
+  <div id="catalog-results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- Products rendered by client script -->
+  </div>
+  <div id="catalog-empty" class="hidden text-center py-16 bg-white rounded-xl border border-slate-200">
+    <p class="text-slate-600">No products found. Try adjusting your search or filters.</p>
+  </div>
+  <div id="catalog-pagination" class="mt-8">
+    <!-- Pagination rendered by client script -->
+  </div>
+</div>
+
+<script>
+  (function () {
+    const container = document.getElementById('catalog-client');
+    if (!container) return;
+
+    const config = JSON.parse(container.dataset.config || '{}');
+    const { products = [], categories = [], initialCategory = 'all', perPage = 12 } = config;
+
+    let searchQuery = '';
+    let categoryFilter = initialCategory;
+    let currentPage = 1;
+
+    function filterProducts() {
+      return products.filter((p) => {
+        const matchSearch =
+          !searchQuery ||
+          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.description.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchCategory = categoryFilter === 'all' || p.category === categoryFilter;
+        return matchSearch && matchCategory;
+      });
+    }
+
+    function renderProducts(filtered) {
+      const results = document.getElementById('catalog-results');
+      const empty = document.getElementById('catalog-empty');
+      const paginationEl = document.getElementById('catalog-pagination');
+
+      if (!results) return;
+
+      const total = filtered.length;
+      const totalPages = Math.max(1, Math.ceil(total / perPage));
+      currentPage = Math.min(currentPage, totalPages);
+      const start = (currentPage - 1) * perPage;
+      const pageProducts = filtered.slice(start, start + perPage);
+
+      if (total === 0) {
+        results.innerHTML = '';
+        empty?.classList.remove('hidden');
+        paginationEl.innerHTML = '';
+        return;
+      }
+
+      empty?.classList.add('hidden');
+      results.innerHTML = pageProducts
+        .map(
+          (p) => `
+        <article class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <a href="/product/${p.id}" class="block group">
+            <div class="aspect-square bg-slate-100 relative overflow-hidden">
+              <img src="${p.image}" alt="${p.name}" width="400" height="400" loading="lazy"
+                class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300" />
+            </div>
+            <div class="p-5">
+              <span class="text-xs font-medium text-accent uppercase tracking-wider">${p.category}</span>
+              <h3 class="mt-1 text-lg font-semibold text-primary group-hover:text-accent transition-colors">${p.name}</h3>
+              <p class="mt-2 text-sm text-slate-600 line-clamp-2">${p.description.length > 100 ? p.description.slice(0, 100) + '...' : p.description}</p>
+              <span class="mt-4 inline-flex items-center text-sm font-medium text-accent group-hover:underline">
+                View Details
+                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      `
+        )
+        .join('');
+
+      // Pagination
+      const startItem = total === 0 ? 0 : start + 1;
+      const endItem = Math.min(start + perPage, total);
+      paginationEl.innerHTML = `
+        <nav class="flex flex-col sm:flex-row items-center justify-between gap-4" aria-label="Catalog pagination">
+          <p class="text-sm text-slate-600">
+            Showing <span class="font-medium">${startItem}</span>–<span class="font-medium">${endItem}</span> of <span class="font-medium">${total}</span> products
+          </p>
+          <div class="flex items-center gap-2">
+            <button type="button" data-prev class="px-4 py-2 rounded-lg border border-slate-200 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors">Previous</button>
+            <span class="text-sm text-slate-600">Page ${currentPage} of ${totalPages}</span>
+            <button type="button" data-next class="px-4 py-2 rounded-lg border border-slate-200 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors">Next</button>
+          </div>
+        </nav>
+      `;
+
+      const prevBtn = paginationEl.querySelector('[data-prev]');
+      const nextBtn = paginationEl.querySelector('[data-next]');
+      prevBtn.disabled = currentPage <= 1;
+      nextBtn.disabled = currentPage >= totalPages;
+
+      prevBtn?.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderProducts(filterProducts());
+        }
+      });
+      nextBtn?.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderProducts(filterProducts());
+        }
+      });
+    }
+
+    function updateCategoryButtons() {
+      container.querySelectorAll('[data-category-id]').forEach((btn) => {
+        const id = btn.dataset.categoryId;
+        const isActive = categoryFilter === id;
+        btn.classList.toggle('bg-accent', isActive);
+        btn.classList.toggle('text-white', isActive);
+        btn.classList.toggle('border-accent', !isActive && id !== 'all');
+        btn.classList.toggle('bg-white', !isActive);
+        btn.classList.toggle('text-slate-600', !isActive);
+      });
+    }
+
+    // Search
+    const searchInput = container.querySelector('#catalog-search');
+    searchInput?.addEventListener('input', (e) => {
+      searchQuery = (e.target?.value || '').trim();
+      currentPage = 1;
+      renderProducts(filterProducts());
+    });
+
+    // Category filter
+    container.querySelectorAll('[data-category-id]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        categoryFilter = btn.dataset.categoryId || 'all';
+        currentPage = 1;
+        updateCategoryButtons();
+        renderProducts(filterProducts());
+      });
+    });
+
+    renderProducts(filterProducts());
+  })();
+</script>

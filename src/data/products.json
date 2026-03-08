@@ -1,0 +1,123 @@
+[
+  {
+    "id": "tmotor-f90",
+    "name": "TMotor F90 Motor",
+    "category": "motors",
+    "image": "/products/placeholder.svg",
+    "images": ["/products/placeholder.svg", "/products/placeholder.svg"],
+    "description": "High performance drone motor designed for racing and freestyle applications. Features precision engineering and optimal power-to-weight ratio.",
+    "specs": {
+      "kv": "1950KV",
+      "weight": "33g",
+      "voltage": "6S"
+    }
+  },
+  {
+    "id": "tmotor-u8-lite",
+    "name": "U8 Lite L Efficiency Motor",
+    "category": "motors",
+    "image": "/products/placeholder.svg",
+    "description": "Industrial-grade UAV motor with exceptional efficiency. Ideal for long-range missions and heavy payload applications.",
+    "specs": {
+      "kv": "110KV",
+      "weight": "485g",
+      "voltage": "12S"
+    }
+  },
+  {
+    "id": "tmotor-u7-v2",
+    "name": "U7 V2.0 Power Type Motor",
+    "category": "motors",
+    "image": "/products/placeholder.svg",
+    "description": "High-power UAV motor for demanding industrial applications. Built for reliability and consistent performance.",
+    "specs": {
+      "kv": "490KV",
+      "weight": "285g",
+      "voltage": "6S"
+    }
+  },
+  {
+    "id": "ns17-props",
+    "name": "NS17×5.8 Carbon Propellers",
+    "category": "propellers",
+    "image": "/products/placeholder.svg",
+    "description": "Ultra-light carbon fiber propellers with excellent efficiency. Perfect balance of thrust and flight time.",
+    "specs": {
+      "diameter": "17 inch",
+      "pitch": "5.8",
+      "material": "Carbon Fiber"
+    }
+  },
+  {
+    "id": "p21-props",
+    "name": "P21×6.3 Agricultural Propellers",
+    "category": "propellers",
+    "image": "/products/placeholder.svg",
+    "description": "Agricultural UAV propellers engineered for spray applications. Durable construction for demanding field use.",
+    "specs": {
+      "diameter": "21 inch",
+      "pitch": "6.3",
+      "material": "Polymer"
+    }
+  },
+  {
+    "id": "v80a-esc",
+    "name": "V80A 14S FOC ESC",
+    "category": "escs",
+    "image": "/products/placeholder.svg",
+    "description": "High-performance FOC ESC with smooth throttle response. Designed for professional UAV applications.",
+    "specs": {
+      "current": "80A",
+      "voltage": "14S",
+      "protocol": "FOC"
+    }
+  },
+  {
+    "id": "v120a-esc",
+    "name": "V120A 14S FOC ESC",
+    "category": "escs",
+    "image": "/products/placeholder.svg",
+    "description": "Heavy-duty FOC ESC for large UAV systems. Advanced thermal management for extended operation.",
+    "specs": {
+      "current": "120A",
+      "voltage": "14S",
+      "protocol": "FOC"
+    }
+  },
+  {
+    "id": "vl1040-motor",
+    "name": "VL1040 VTOL Motor",
+    "category": "vtol",
+    "image": "/products/placeholder.svg",
+    "description": "VTOL propulsion motor for hybrid UAV platforms. Optimized for vertical takeoff and forward flight.",
+    "specs": {
+      "kv": "150KV",
+      "weight": "1.2kg",
+      "voltage": "12S"
+    }
+  },
+  {
+    "id": "ax435-fixed",
+    "name": "AX435 Fixed-Wing Motor",
+    "category": "fixed-wing",
+    "image": "/products/placeholder.svg",
+    "description": "Efficient fixed-wing motor for mapping and surveillance missions. Low noise and high reliability.",
+    "specs": {
+      "kv": "435KV",
+      "weight": "185g",
+      "voltage": "6S"
+    }
+  },
+  {
+    "id": "airgear-350",
+    "name": "Airgear 350 Combo",
+    "category": "systems",
+    "image": "/products/placeholder.svg",
+    "description": "Complete propulsion system including motor, ESC and propellers. Ready for integration.",
+    "specs": {
+      "motor": "MN3507",
+      "esc": "V40A",
+      "props": "14×4.8"
+    }
+  }
+]
