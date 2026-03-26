@@ -1,0 +1,233 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  activePage?: 'home' | 'catalog' | 'about' | 'contact';
+}
+const {
+  title,
+  description = 'B2B manufacturer of high-precision UAV components: motors, ESCs, propellers for industrial multirotor platforms.',
+  activePage,
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────────────────────────── -->
+<header class="nav-wrap">
+  <nav class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-accent">G</span>lobal<span class="logo-accent">R</span>obotex
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/"        class={`nav-link${activePage === 'home'    ? ' active' : ''}`}>Home</a></li>
+      <li><a href="/catalog" class={`nav-link${activePage === 'catalog' ? ' active' : ''}`}>Catalog</a></li>
+      <li><a href="/#about"  class={`nav-link${activePage === 'about'   ? ' active' : ''}`}>About</a></li>
+      <li><a href="/contact" class={`nav-link${activePage === 'contact' ? ' active' : ''}`}>Contact</a></li>
+    </ul>
+    <a href="/contact" class="btn btn-primary btn-sm">Request Quote</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ─── PAGE CONTENT ──────────────────────────────────────────────────── -->
+<slot />
+
+<!-- ─── FOOTER ────────────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <span class="logo-accent">G</span>lobal<span class="logo-accent">R</span>obotex
+    </div>
+    <div class="footer-meta">B2B UAV Component Manufacturer · 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
+
+<style is:global>
+  /* ── RESET & ROOT ───────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:          #060D1F;
+    --bg-2:        #0B1527;
+    --bg-card:     #111E36;
+    --border:      #1A2D4A;
+
+    --accent:      #3A8FE8;
+    --accent-h:    #5AAAF5;
+    --accent-d:    #1E6FC4;
+    --accent-tint: rgba(58,143,232,0.12);
+
+    --text-1:      #E8EDF5;
+    --text-2:      #9BAFC8;
+    --text-3:      #4A5F7A;
+
+    --font:        'Inter', system-ui, sans-serif;
+    --mono:        'Courier New', monospace;
+    --r:           6px;
+    --r-lg:        12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text-1);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT ─────────────────────────────────────────────────────────── */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── TYPOGRAPHY ─────────────────────────────────────────────────────── */
+  .accent { color: var(--accent); }
+
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: 28px; font-weight: 700;
+    letter-spacing: -0.01em; margin-bottom: 32px;
+  }
+
+  p { color: var(--text-2); line-height: 1.7; }
+
+  /* ── BUTTONS ────────────────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: var(--r);
+    font-family: var(--font); font-size: 14px; font-weight: 600;
+    cursor: pointer; border: none; text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .btn-primary  { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-h); }
+  .btn-outline  { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn-outline:hover { background: var(--accent-tint); }
+  .btn-ghost    { background: var(--bg-card); color: var(--text-1); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--text-3); }
+  .btn-sm { padding: 7px 14px; font-size: 12px; }
+
+  /* ── BADGES ─────────────────────────────────────────────────────────── */
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .badge-blue { background: var(--accent-tint); color: var(--accent-h); border: 1px solid rgba(58,143,232,0.3); }
+  .badge-gray { background: rgba(255,255,255,0.05); color: var(--text-2); border: 1px solid var(--border); }
+
+  /* ── INPUTS ─────────────────────────────────────────────────────────── */
+  .inp {
+    background: var(--bg-card); border: 1.5px solid var(--border);
+    border-radius: var(--r); padding: 10px 14px;
+    font-family: var(--font); font-size: 14px; color: var(--text-1);
+    outline: none; transition: border-color 0.15s; width: 100%;
+  }
+  .inp:focus { border-color: var(--accent); }
+  .inp::placeholder { color: var(--text-3); }
+  .inp-ta { resize: vertical; min-height: 110px; }
+
+  select.inp { appearance: none; cursor: pointer; }
+
+  /* ── NAV ─────────────────────────────────────────────────────────────── */
+  .nav-wrap {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6,13,31,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    height: 60px; display: flex; align-items: center; gap: 32px;
+  }
+  .nav-logo {
+    font-size: 16px; font-weight: 800; letter-spacing: -0.01em;
+    color: var(--text-1); text-decoration: none; flex-shrink: 0;
+  }
+  .logo-accent { color: var(--accent); }
+  .nav-links {
+    display: flex; gap: 24px; list-style: none; flex: 1;
+  }
+  .nav-link {
+    font-size: 13px; color: var(--text-2); text-decoration: none;
+    font-weight: 500; transition: color 0.15s;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--text-1); }
+  .nav-link.active { font-weight: 600; }
+
+  .nav-burger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+    margin-left: auto;
+  }
+  .nav-burger span {
+    display: block; width: 20px; height: 1.5px;
+    background: var(--text-2); border-radius: 2px; transition: background 0.15s;
+  }
+  .nav-burger:hover span { background: var(--text-1); }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────────── */
+  .site-footer { border-top: 1px solid var(--border); padding: 24px 0; }
+  .footer-inner {
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-logo { font-size: 14px; font-weight: 800; letter-spacing: -0.01em; }
+  .footer-meta { font-size: 12px; color: var(--text-3); }
+
+  /* ── SCROLLBAR ───────────────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .nav-links { display: none; flex-direction: column; }
+    .nav-links.open {
+      display: flex; position: absolute; top: 60px; left: 0; right: 0;
+      background: var(--bg); padding: 16px 24px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-burger { display: flex; }
+    .nav-inner { position: relative; }
+    h2 { font-size: 22px; }
+  }
+</style>
+
+<script>
+  const burger = document.getElementById('nav-burger');
+  const links  = document.getElementById('nav-links');
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    links?.classList.toggle('open', !open);
+  });
+</script>

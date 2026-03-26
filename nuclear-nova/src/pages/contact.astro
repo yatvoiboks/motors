@@ -1,0 +1,287 @@
+---
+import Layout from '../layouts/Layout.astro';
+import products from '../data/products.json';
+
+// Pre-fill product from query param if coming from catalog
+// (Astro SSG — passed via URL hash client-side, handled in script below)
+---
+<Layout title="Contact — GlobalRobotex" activePage="contact">
+
+<!-- ─── PAGE HEADER ──────────────────────────────────────────────────── -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h1 class="page-title">Request a Quote</h1>
+    <p class="page-sub">
+      For pricing, lead times and custom OEM orders — send us your specifications.
+      We respond within one business day.
+    </p>
+  </div>
+  <div class="hero-glow"></div>
+</section>
+
+<!-- ─── CONTENT ───────────────────────────────────────────────────────── -->
+<main class="contact-main">
+  <div class="container contact-grid">
+
+    <!-- LEFT: info -->
+    <aside class="contact-info">
+      <div class="info-block">
+        <div class="info-label">Email</div>
+        <a href="mailto:sales@globalrobotex.com" class="info-value info-link">
+          sales@globalrobotex.com
+        </a>
+        <div class="info-hint">For quotes and product inquiries</div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-label">Business Hours</div>
+        <div class="info-value">Mon – Fri · 9:00 – 18:00</div>
+        <div class="info-hint">UTC+3 (Kyiv)</div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-label">OEM & Custom Orders</div>
+        <div class="info-hint">
+          We work with integrators and OEM partners on custom voltage ranges,
+          shaft sizes and firmware configurations. Include your platform specs in the message.
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-label">Technical Documentation</div>
+        <div class="info-hint">
+          Dimensional drawings and CAD files (STEP, DXF) are available for all products
+          directly from the <a href="/catalog" class="inline-link">catalog page</a>.
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT: form -->
+    <div class="form-wrap">
+      <div class="form-heading">Get in Touch</div>
+
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="form-row-2">
+          <div class="field">
+            <label class="field-label" for="f-company">Company</label>
+            <input id="f-company" class="inp" type="text" name="company" placeholder="Company name" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="f-email">Email <span class="field-req">*</span></label>
+            <input id="f-email" class="inp" type="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="f-product">Product of Interest</label>
+          <div class="select-wrap">
+            <select id="f-product" class="inp" name="product">
+              <option value="">— Select product (optional) —</option>
+              {products.map(p => (
+                <option value={p.name}>{p.name}</option>
+              ))}
+              <option value="custom">Custom / OEM order</option>
+            </select>
+            <svg class="select-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="f-qty">Quantity / Batch Size</label>
+          <input id="f-qty" class="inp" type="text" name="quantity" placeholder="e.g. 50 units, 200 pairs..." />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="f-msg">Message <span class="field-req">*</span></label>
+          <textarea id="f-msg" class="inp inp-ta" name="message" placeholder="Platform specs, requirements, lead time..." required></textarea>
+        </div>
+
+        <div class="form-footer">
+          <button type="submit" class="btn btn-primary" id="submit-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1.5 7h11M8.5 3.5L12 7l-3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Send Request
+          </button>
+          <span class="form-note">We don't share your data with third parties.</span>
+        </div>
+
+        <!-- Success state (hidden by default) -->
+        <div class="form-success" id="form-success" hidden>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="9" stroke="#3A8FE8" stroke-width="1.4"/>
+            <path d="M6 10.5l2.5 2.5L14 7" stroke="#3A8FE8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div class="success-title">Request sent</div>
+            <div class="success-sub">We'll get back to you within one business day.</div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+</Layout>
+
+<style>
+  /* ── PAGE HERO ───────────────────────────────────────────────────────── */
+  .page-hero {
+    position: relative; overflow: hidden;
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-glow {
+    position: absolute; top: -80px; right: -80px;
+    width: 600px; height: 600px; pointer-events: none;
+    background: radial-gradient(circle, rgba(58,143,232,0.07) 0%, transparent 65%);
+  }
+  .page-title { margin-bottom: 16px; }
+  .page-sub { font-size: 15px; color: var(--text-2); max-width: 480px; }
+
+  /* ── LAYOUT ──────────────────────────────────────────────────────────── */
+  .contact-main { padding: 56px 0 96px; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* ── INFO COLUMN ─────────────────────────────────────────────────────── */
+  .contact-info { display: flex; flex-direction: column; gap: 32px; }
+  .info-block {}
+  .info-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-3); margin-bottom: 6px;
+  }
+  .info-value { font-size: 14px; font-weight: 600; color: var(--text-1); margin-bottom: 4px; display: block; }
+  .info-link { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+  .info-link:hover { color: var(--accent-h); }
+  .info-hint { font-size: 13px; color: var(--text-3); line-height: 1.6; }
+  .inline-link { color: var(--accent); text-decoration: none; }
+  .inline-link:hover { color: var(--accent-h); }
+
+  /* ── FORM COLUMN ─────────────────────────────────────────────────────── */
+  .form-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 32px;
+  }
+  .form-heading {
+    font-size: 18px; font-weight: 700;
+    color: var(--text-1); margin-bottom: 28px;
+    padding-bottom: 20px; border-bottom: 1px solid var(--border);
+  }
+
+  /* Fields */
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field-label { font-size: 12px; font-weight: 600; color: var(--text-2); letter-spacing: 0.03em; }
+  .field-req { color: var(--accent); }
+
+  /* Select wrapper to add custom chevron */
+  .select-wrap { position: relative; }
+  .select-wrap .inp { padding-right: 32px; }
+  .select-chevron {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--text-3); pointer-events: none;
+  }
+  select.inp option { background: var(--bg-card); color: var(--text-1); }
+
+  /* Form footer */
+  .form-footer {
+    display: flex; align-items: center; gap: 16px;
+    padding-top: 8px; flex-wrap: wrap;
+  }
+  .form-note { font-size: 12px; color: var(--text-3); }
+
+  /* Validation highlight */
+  .inp.invalid { border-color: rgba(220, 60, 60, 0.6); }
+  .inp.invalid:focus { border-color: #e06060; }
+
+  /* Success banner */
+  .form-success {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 20px;
+    background: var(--accent-tint); border: 1px solid rgba(58,143,232,0.3);
+    border-radius: var(--r-lg);
+  }
+  .form-success[hidden] { display: none; }
+  .form-success svg { flex-shrink: 0; margin-top: 2px; }
+  .success-title { font-size: 14px; font-weight: 700; color: var(--text-1); margin-bottom: 2px; }
+  .success-sub { font-size: 13px; color: var(--text-2); }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-info { flex-direction: row; flex-wrap: wrap; gap: 24px; }
+    .info-block { min-width: 200px; }
+  }
+  @media (max-width: 560px) {
+    .form-wrap { padding: 24px 20px; }
+    .form-row-2 { grid-template-columns: 1fr; }
+    .contact-info { flex-direction: column; }
+  }
+</style>
+
+<script>
+  // Pre-fill product select from URL ?product=... param
+  const params  = new URLSearchParams(window.location.search);
+  const product = params.get('product');
+  if (product) {
+    const sel = document.getElementById('f-product') as HTMLSelectElement | null;
+    if (sel) {
+      const opt = Array.from(sel.options).find(o => o.value === product);
+      if (opt) sel.value = product;
+    }
+  }
+
+  // Basic client-side validation + mock submit
+  const form      = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const successEl = document.getElementById('form-success') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    const required = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]');
+    required.forEach(el => {
+      el.classList.remove('invalid');
+      if (!el.value.trim()) { el.classList.add('invalid'); valid = false; }
+    });
+
+    // Email format check
+    const emailEl = form.querySelector<HTMLInputElement>('#f-email');
+    if (emailEl && emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      emailEl.classList.add('invalid'); valid = false;
+    }
+
+    if (!valid) return;
+
+    // Simulate send (replace with your actual endpoint / Cloudflare Worker)
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    await new Promise(r => setTimeout(r, 800)); // fake network delay
+
+    form.querySelectorAll<HTMLElement>('.field, .form-row-2, .form-footer').forEach(el => {
+      el.style.display = 'none';
+    });
+    successEl.hidden = false;
+  });
+
+  // Remove invalid state on input
+  form?.querySelectorAll('.inp').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('invalid'));
+  });
+</script>

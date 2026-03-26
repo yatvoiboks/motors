@@ -1,0 +1,436 @@
+---
+import Layout from '../layouts/Layout.astro';
+import products from '../data/products.json';
+
+const R2_BASE = import.meta.env.R2_BASE_URL ?? 'https://cdn.globalrobotex.com/products';
+function photoUrl(sku: string, key: string) { return `${R2_BASE}/${sku}/${key}`; }
+function drawingUrl(sku: string, key: string) { return `${R2_BASE}/${sku}/drawings/${key}`; }
+
+const categories = ['All', ...Array.from(new Set(products.map(p => p.category)))];
+---
+<Layout title="Catalog — GlobalRobotex" activePage="catalog">
+
+<!-- ─── PAGE HEADER ──────────────────────────────────────────────────── -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Products</div>
+    <h1 class="page-title">Component Catalog</h1>
+    <p class="page-sub">
+      Motors, ESCs and propellers for industrial multirotor platforms.
+      Technical drawings and CAD files included with every product.
+    </p>
+  </div>
+  <div class="hero-glow"></div>
+</section>
+
+<!-- ─── TOOLBAR ───────────────────────────────────────────────────────── -->
+<div class="toolbar-wrap">
+  <div class="container toolbar">
+    <!-- Search -->
+    <div class="search-wrap">
+      <svg class="search-icon" width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+        <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.3"/>
+        <line x1="10.5" y1="10.5" x2="13.5" y2="13.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      <input
+        id="search-input"
+        class="search-inp"
+        type="search"
+        placeholder="Search products..."
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-bar">
+      {categories.map((cat, i) => (
+        <button
+          class={`filter-btn${i === 0 ? ' active' : ''}`}
+          data-cat={cat === 'All' ? 'all' : cat}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Count -->
+    <div class="result-count" id="result-count">
+      <span id="count-num">{products.length}</span> products
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCT GRID ──────────────────────────────────────────────────── -->
+<main class="catalog-main">
+  <div class="container">
+    <div class="product-grid" id="product-grid">
+      {products.map((p) => (
+        <article class="product-card" data-cat={p.category} data-name={p.name.toLowerCase()} data-desc={p.description.toLowerCase()}>
+
+          <!-- Photo -->
+          <div class="card-photo">
+            <img
+              src={photoUrl(p.sku, p.photos[0])}
+              alt={p.name}
+              loading="lazy"
+              decoding="async"
+              width="400" height="400"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+            />
+            <div class="card-photo-placeholder" style="display:none">
+              <svg width="52" height="52" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <circle cx="24" cy="24" r="10" stroke="#3A8FE8" stroke-width="1.5"/>
+                <circle cx="24" cy="24" r="3" fill="#3A8FE8"/>
+                <line x1="24" y1="4" x2="24" y2="14" stroke="#3A8FE8" stroke-width="1.5"/>
+                <line x1="24" y1="34" x2="24" y2="44" stroke="#3A8FE8" stroke-width="1.5"/>
+                <line x1="4" y1="24" x2="14" y2="24" stroke="#3A8FE8" stroke-width="1.5"/>
+                <line x1="34" y1="24" x2="44" y2="24" stroke="#3A8FE8" stroke-width="1.5"/>
+              </svg>
+            </div>
+            {p.photos.length > 1 && (
+              <div class="photo-dots">
+                {p.photos.map((_, i) => (
+                  <button
+                    class={`photo-dot${i === 0 ? ' active' : ''}`}
+                    data-idx={i}
+                    data-sku={p.sku}
+                    aria-label={`Photo ${i + 1}`}
+                  ></button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <!-- Body -->
+          <div class="card-body">
+            <div class="card-top">
+              <span class="card-cat">{p.category}</span>
+              <span class={`badge ${p.badge === 'New' ? 'badge-gray' : 'badge-blue'}`}>{p.badge}</span>
+            </div>
+            <h2 class="card-name">{p.name}</h2>
+            <p class="card-desc">{p.description}</p>
+
+            <dl class="specs-table">
+              {Object.entries(p.specs).map(([k, v]) => (
+                <>
+                  <dt>{k}</dt>
+                  <dd>{v as string}</dd>
+                </>
+              ))}
+            </dl>
+          </div>
+
+          <!-- Drawings -->
+          <div class="card-drawings">
+            <button class="drawings-toggle" aria-expanded="false">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <rect x="1" y="1" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="4" y1="4.5" x2="10" y2="4.5" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="4" y1="7"   x2="10" y2="7"   stroke="currentColor" stroke-width="1.2"/>
+                <line x1="4" y1="9.5" x2="7.5" y2="9.5" stroke="currentColor" stroke-width="1.2"/>
+              </svg>
+              Technical Drawings
+              <span class="drawings-count">{p.drawings.length}</span>
+              <svg class="toggle-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="drawings-list" hidden>
+              {p.drawings.map((d) => (
+                <a
+                  href={drawingUrl(p.sku, d.key)}
+                  class="drawing-item"
+                  download
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class={`drawing-icon drawing-icon-${d.type}`}>
+                    {d.type === 'pdf' ? 'PDF' : 'CAD'}
+                  </span>
+                  <span class="drawing-label">{d.label}</span>
+                  <svg class="drawing-dl" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M6 2v6M3.5 6l2.5 2.5L8.5 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="2" y1="10.5" x2="10" y2="10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="card-footer">
+            <a href={`/contact?product=${encodeURIComponent(p.name)}`} class="btn btn-outline btn-sm">Request Quote</a>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="empty-state" hidden>
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#1A2D4A" stroke-width="1.5"/>
+        <path d="M14 14l12 12M26 14L14 26" stroke="#4A5F7A" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p>No products match your search.</p>
+    </div>
+  </div>
+</main>
+
+</Layout>
+
+<style>
+  /* ── PAGE HERO ───────────────────────────────────────────────────────── */
+  .page-hero {
+    position: relative; overflow: hidden;
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-glow {
+    position: absolute; top: -80px; right: -80px;
+    width: 600px; height: 600px; pointer-events: none;
+    background: radial-gradient(circle, rgba(58,143,232,0.07) 0%, transparent 65%);
+  }
+  .page-title { margin-bottom: 16px; }
+  .page-sub { font-size: 15px; color: var(--text-2); max-width: 500px; }
+
+  /* ── TOOLBAR ─────────────────────────────────────────────────────────── */
+  .toolbar-wrap {
+    position: sticky; top: 60px; z-index: 50;
+    background: rgba(6,13,31,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+  }
+  .toolbar {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+
+  /* Search */
+  .search-wrap {
+    position: relative; flex-shrink: 0;
+  }
+  .search-icon {
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    color: var(--text-3); pointer-events: none;
+  }
+  .search-inp {
+    background: var(--bg-card); border: 1.5px solid var(--border);
+    border-radius: var(--r); padding: 8px 14px 8px 34px;
+    font-family: var(--font); font-size: 13px; color: var(--text-1);
+    outline: none; transition: border-color 0.15s; width: 220px;
+  }
+  .search-inp:focus { border-color: var(--accent); }
+  .search-inp::placeholder { color: var(--text-3); }
+  /* hide browser's built-in clear "×" */
+  .search-inp::-webkit-search-cancel-button { display: none; }
+
+  /* Filters */
+  .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 6px 14px; border-radius: 20px;
+    font-family: var(--font); font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--text-2); cursor: pointer; transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--text-3); color: var(--text-1); }
+  .filter-btn.active {
+    background: var(--accent-tint); border-color: rgba(58,143,232,0.4);
+    color: var(--accent-h);
+  }
+
+  /* Count */
+  .result-count {
+    margin-left: auto; font-size: 12px; color: var(--text-3);
+    white-space: nowrap;
+  }
+  #count-num { color: var(--text-2); font-weight: 600; }
+
+  /* ── CATALOG MAIN ─────────────────────────────────────────────────────── */
+  .catalog-main { padding: 40px 0 80px; }
+
+  /* ── PRODUCT GRID ─────────────────────────────────────────────────────── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  /* ── PRODUCT CARD ─────────────────────────────────────────────────────── */
+  .product-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--r-lg); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .product-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .product-card[data-hidden] { display: none; }
+
+  /* Photo */
+  .card-photo {
+    position: relative; aspect-ratio: 1;
+    background: var(--bg-2); overflow: hidden;
+  }
+  .card-photo img {
+    width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
+    padding: 16px; transition: transform 0.3s;
+  }
+  .product-card:hover .card-photo img { transform: scale(1.04); }
+  .card-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.3;
+  }
+  .photo-dots {
+    position: absolute; bottom: 8px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 5px;
+  }
+  .photo-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-3); border: none; cursor: pointer;
+    padding: 0; transition: background 0.15s;
+  }
+  .photo-dot.active { background: var(--accent); }
+
+  /* Body */
+  .card-body { padding: 16px; flex: 1; }
+  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .card-cat { font-size: 10px; color: var(--accent); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .card-name { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; line-height: 1.3; }
+  .card-desc { font-size: 12px; color: var(--text-3); line-height: 1.6; margin-bottom: 14px; }
+
+  /* Specs */
+  .specs-table { display: grid; grid-template-columns: auto 1fr; gap: 3px 16px; font-family: var(--mono); font-size: 11px; }
+  .specs-table dt { color: var(--text-3); white-space: nowrap; }
+  .specs-table dd { color: var(--accent-h); font-weight: 500; }
+
+  /* Drawings */
+  .card-drawings { border-top: 1px solid var(--border); }
+  .drawings-toggle {
+    width: 100%; padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--font); font-size: 12px; font-weight: 600;
+    color: var(--text-2); text-align: left; transition: color 0.15s;
+  }
+  .drawings-toggle:hover { color: var(--text-1); }
+  .drawings-toggle svg:first-child { color: var(--accent); flex-shrink: 0; }
+  .drawings-count {
+    font-size: 10px; font-weight: 700;
+    background: var(--accent-tint); color: var(--accent-h);
+    border: 1px solid rgba(58,143,232,0.25);
+    padding: 1px 7px; border-radius: 10px;
+  }
+  .toggle-chevron { margin-left: auto; color: var(--text-3); transition: transform 0.2s; flex-shrink: 0; }
+  .drawings-toggle[aria-expanded="true"] .toggle-chevron { transform: rotate(180deg); }
+
+  .drawings-list { padding: 0 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .drawings-list[hidden] { display: none; }
+
+  .drawing-item {
+    display: flex; align-items: center; gap: 8px; padding: 7px 10px;
+    border-radius: var(--r); background: var(--bg-2); border: 1px solid var(--border);
+    text-decoration: none; color: var(--text-2);
+    font-size: 12px; font-weight: 500; transition: border-color 0.15s, color 0.15s;
+  }
+  .drawing-item:hover { border-color: var(--accent); color: var(--text-1); }
+  .drawing-icon {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+    padding: 2px 6px; border-radius: 3px; flex-shrink: 0;
+  }
+  .drawing-icon-pdf { background: rgba(220,50,50,0.15); color: #e06060; border: 1px solid rgba(220,50,50,0.25); }
+  .drawing-icon-cad { background: var(--accent-tint); color: var(--accent-h); border: 1px solid rgba(58,143,232,0.25); }
+  .drawing-label { flex: 1; }
+  .drawing-dl { color: var(--text-3); margin-left: auto; flex-shrink: 0; }
+  .drawing-item:hover .drawing-dl { color: var(--accent); }
+
+  /* Card footer */
+  .card-footer { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; }
+
+  /* Empty state */
+  .empty-state {
+    padding: 64px 24px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+  .empty-state p { color: var(--text-3); font-size: 14px; }
+  .empty-state[hidden] { display: none; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+  @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 800px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px)  {
+    .product-grid { grid-template-columns: 1fr; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .search-inp { width: 100%; }
+    .result-count { margin-left: 0; }
+  }
+</style>
+
+<script>
+  // ── Photo switcher ─────────────────────────────────────────────────────
+  const R2_BASE = (import.meta.env.R2_BASE_URL as string | undefined) ?? 'https://cdn.globalrobotex.com/products';
+  import productsData from '../data/products.json';
+  const photoMap: Record<string, string[]> = {};
+  for (const p of productsData) photoMap[p.sku] = p.photos;
+
+  document.querySelectorAll<HTMLButtonElement>('.photo-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const card = dot.closest('.product-card') as HTMLElement;
+      const sku   = dot.dataset.sku ?? '';
+      const idx   = Number(dot.dataset.idx ?? 0);
+      const img   = card.querySelector<HTMLImageElement>('.card-photo img');
+      if (img) img.src = `${R2_BASE}/${sku}/${photoMap[sku]?.[idx] ?? ''}`;
+      card.querySelectorAll('.photo-dot').forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+    });
+  });
+
+  // ── Drawings toggle ────────────────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.drawings-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const list = btn.nextElementSibling as HTMLElement;
+      expanded ? list.setAttribute('hidden', '') : list.removeAttribute('hidden');
+    });
+  });
+
+  // ── Search + filter ────────────────────────────────────────────────────
+  const cards      = Array.from(document.querySelectorAll<HTMLElement>('.product-card'));
+  const searchInp  = document.getElementById('search-input') as HTMLInputElement;
+  const filterBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-btn'));
+  const countNum   = document.getElementById('count-num');
+  const emptyState = document.getElementById('empty-state') as HTMLElement;
+
+  let activeCat = 'all';
+  let searchQ   = '';
+
+  function applyFilter() {
+    let visible = 0;
+    cards.forEach(card => {
+      const catMatch  = activeCat === 'all' || card.dataset.cat === activeCat;
+      const nameMatch = (card.dataset.name ?? '').includes(searchQ);
+      const descMatch = (card.dataset.desc ?? '').includes(searchQ);
+      const show = catMatch && (nameMatch || descMatch || searchQ === '');
+      card.toggleAttribute('data-hidden', !show);
+      if (show) visible++;
+    });
+    if (countNum) countNum.textContent = String(visible);
+    emptyState.hidden = visible > 0;
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCat = btn.dataset.cat ?? 'all';
+      applyFilter();
+    });
+  });
+
+  searchInp?.addEventListener('input', () => {
+    searchQ = searchInp.value.toLowerCase().trim();
+    applyFilter();
+  });
+</script>

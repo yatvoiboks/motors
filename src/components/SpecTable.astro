@@ -2,34 +2,42 @@
 interface Props {
   specs: Record<string, string>;
 }
-
 const { specs } = Astro.props;
 const entries = Object.entries(specs);
 ---
 
-<div class="overflow-hidden rounded-lg border border-slate-200">
-  <table class="min-w-full divide-y divide-slate-200">
-    <thead class="bg-slate-50">
-      <tr>
-        <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-primary">
-          Specification
-        </th>
-        <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-primary">
-          Value
-        </th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-slate-200 bg-white">
-      {entries.map(([key, value]) => (
-        <tr>
-          <td class="px-6 py-4 text-sm text-slate-600 capitalize whitespace-nowrap">
-            {key.replace(/-/g, ' ')}
-          </td>
-          <td class="px-6 py-4 text-sm font-medium text-primary">
-            {value}
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+<dl class="spec-table">
+  {entries.map(([key, value]) => (
+    <div class="spec-row">
+      <dt class="spec-key">{key.replace(/-/g, ' ')}</dt>
+      <dd class="spec-val">{value}</dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+  .spec-table {
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .spec-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--mono); font-size: 13px;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-key {
+    padding: 10px 16px;
+    color: var(--t3);
+    background: var(--bg-2);
+    border-right: 1px solid var(--border);
+    text-transform: capitalize;
+    font-style: normal;
+  }
+  .spec-val {
+    padding: 10px 16px;
+    color: var(--accent-h);
+    font-weight: 500;
+  }
+</style>

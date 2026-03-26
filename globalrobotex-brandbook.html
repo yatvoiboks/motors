@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobalRobotex — Brand Book</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* === PRIMARY PALETTE === */
+    --navy:       #060D1F;   /* Background primary */
+    --navy-2:     #0B1527;   /* Background secondary */
+    --navy-3:     #111E36;   /* Background card */
+    --navy-4:     #1A2D4A;   /* Border / divider */
+
+    --blue:       #3A8FE8;   /* Accent primary */
+    --blue-light: #5AAAF5;   /* Accent hover */
+    --blue-dark:  #1E6FC4;   /* Accent pressed */
+    --blue-dim:   rgba(58,143,232,0.12); /* Accent bg tint */
+
+    --white:      #FFFFFF;
+    --gray-100:   #E8EDF5;   /* Text primary */
+    --gray-300:   #9BAFC8;   /* Text secondary */
+    --gray-500:   #4A5F7A;   /* Text muted / border */
+
+    /* === TYPOGRAPHY === */
+    --font: 'Inter', system-ui, sans-serif;
+
+    /* === SPACING === */
+    --r: 6px;
+    --r-lg: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--navy);
+    color: var(--gray-100);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 900px; margin: 0 auto; padding: 0 40px 80px; }
+
+  section { padding: 64px 0 0; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+
+  h1 { font-size: 48px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+  h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 32px; }
+  h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-300); margin-bottom: 12px; }
+
+  p { color: var(--gray-300); line-height: 1.7; }
+
+  hr { border: none; border-top: 1px solid var(--navy-4); margin: 64px 0 0; }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 320px;
+    border-bottom: 1px solid var(--navy-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 64px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(58,143,232,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-meta {
+    font-size: 12px;
+    color: var(--gray-500);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cover h1 span { color: var(--blue); }
+  .cover-sub {
+    margin-top: 16px;
+    font-size: 16px;
+    color: var(--gray-300);
+    max-width: 480px;
+  }
+
+  /* ── COLOR SWATCHES ── */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .swatch {
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid var(--navy-4);
+  }
+  .swatch-color { height: 80px; }
+  .swatch-info { padding: 12px; background: var(--navy-3); }
+  .swatch-name { font-size: 12px; font-weight: 600; color: var(--gray-100); }
+  .swatch-hex  { font-size: 11px; color: var(--gray-500); font-family: 'Courier New', monospace; margin-top: 2px; }
+  .swatch-use  { font-size: 10px; color: var(--gray-500); margin-top: 4px; line-height: 1.4; }
+
+  /* ── TYPOGRAPHY SPECIMENS ── */
+  .type-specimen { padding: 28px; background: var(--navy-3); border-radius: var(--r-lg); border: 1px solid var(--navy-4); margin-bottom: 12px; }
+  .type-label { font-size: 11px; color: var(--gray-500); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .t-h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .t-h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; }
+  .t-h3 { font-size: 20px; font-weight: 600; }
+  .t-body { font-size: 15px; font-weight: 400; color: var(--gray-300); line-height: 1.7; max-width: 540px; }
+  .t-small { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); }
+  .t-mono  { font-family: 'Courier New', monospace; font-size: 13px; color: var(--blue-light); }
+
+  /* ── COMPONENTS ── */
+  .comp-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; margin-bottom: 24px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: var(--r);
+    font-family: var(--font); font-size: 14px; font-weight: 600;
+    cursor: pointer; border: none; text-decoration: none; transition: all 0.15s;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: var(--blue-light); }
+  .btn-outline { background: transparent; color: var(--blue); border: 1.5px solid var(--blue); }
+  .btn-outline:hover { background: var(--blue-dim); }
+  .btn-ghost  { background: var(--navy-3); color: var(--gray-100); border: 1px solid var(--navy-4); }
+  .btn-ghost:hover { border-color: var(--gray-500); }
+  .btn-sm { padding: 7px 14px; font-size: 12px; }
+
+  /* Badge */
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .badge-blue { background: var(--blue-dim); color: var(--blue-light); border: 1px solid rgba(58,143,232,0.3); }
+  .badge-gray { background: rgba(255,255,255,0.05); color: var(--gray-300); border: 1px solid var(--navy-4); }
+
+  /* Card */
+  .product-card {
+    background: var(--navy-3);
+    border: 1px solid var(--navy-4);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    width: 200px;
+    transition: border-color 0.2s;
+  }
+  .product-card:hover { border-color: var(--blue); }
+  .card-img {
+    height: 120px;
+    background: var(--navy-4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-img svg { opacity: 0.3; }
+  .card-body { padding: 14px; }
+  .card-cat { font-size: 10px; color: var(--blue); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .card-name { font-size: 14px; font-weight: 600; color: var(--gray-100); margin-bottom: 6px; }
+  .card-spec { font-size: 12px; color: var(--gray-500); }
+  .card-footer { padding: 10px 14px; border-top: 1px solid var(--navy-4); display: flex; justify-content: space-between; align-items: center; }
+
+  /* Input */
+  .inp {
+    background: var(--navy-3); border: 1.5px solid var(--navy-4);
+    border-radius: var(--r); padding: 10px 14px;
+    font-family: var(--font); font-size: 14px; color: var(--gray-100);
+    outline: none; transition: border-color 0.15s; width: 220px;
+  }
+  .inp:focus { border-color: var(--blue); }
+  .inp::placeholder { color: var(--gray-500); }
+
+  /* Nav preview */
+  .nav-preview {
+    background: rgba(6,13,31,0.95);
+    border: 1px solid var(--navy-4);
+    border-radius: var(--r-lg);
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 32px;
+    height: 56px;
+  }
+  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 24px; flex: 1; }
+  .nav-link { font-size: 13px; color: var(--gray-300); text-decoration: none; font-weight: 500; }
+  .nav-link.active { color: var(--gray-100); }
+
+  /* ── SPACING ── */
+  .spacing-row { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+  .sp-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .sp-block { background: var(--blue-dim); border: 1px solid rgba(58,143,232,0.3); border-radius: 3px; width: 40px; }
+  .sp-label { font-size: 11px; color: var(--gray-500); font-family: 'Courier New', monospace; }
+
+  /* ── VOICE & TONE ── */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .voice-card {
+    padding: 20px; border-radius: var(--r-lg);
+    border: 1px solid var(--navy-4);
+  }
+  .voice-card.yes { border-color: rgba(58,143,232,0.4); background: var(--blue-dim); }
+  .voice-card.no  { background: var(--navy-3); }
+  .voice-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .voice-tag.yes-tag { color: var(--blue-light); }
+  .voice-tag.no-tag  { color: var(--gray-500); }
+  .voice-item { font-size: 13px; color: var(--gray-300); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .voice-item:last-child { border-bottom: none; }
+
+  /* ── LOGO RULES ── */
+  .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .logo-box {
+    border-radius: var(--r-lg); border: 1px solid var(--navy-4);
+    height: 120px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px;
+  }
+  .logo-box.dark  { background: var(--navy-2); }
+  .logo-box.light { background: #E8EDF5; }
+  .logo-box.mid   { background: #1A2D4A; }
+  .logo-box-label { font-size: 10px; color: var(--gray-500); margin-top: 4px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .logo-text { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+  .logo-text .gr-g, .logo-text .gr-r { color: var(--blue); }
+  .logo-text.on-light { color: var(--navy); }
+  .logo-text.on-light .gr-g, .logo-text.on-light .gr-r { color: var(--blue-dark); }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--navy-3); border: 1px solid var(--navy-4);
+    border-radius: var(--r-lg); padding: 24px 28px; margin-top: 40px;
+  }
+  .toc-title { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+  .toc-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; }
+  .toc-list a { font-size: 13px; color: var(--gray-300); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .toc-list a::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+  .toc-list a:hover { color: var(--gray-100); }
+
+  /* ── GRID DEMO ── */
+  .grid-demo { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
+  .grid-col { height: 32px; border-radius: 3px; background: var(--blue-dim); border: 1px solid rgba(58,143,232,0.2); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-4); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-meta">Brand Guidelines · v1.0 · 2026</div>
+    <h1><span>Global</span>Robotex<br>Brand Book</h1>
+    <p class="cover-sub">Визуальная система и правила использования бренда для команды, партнёров и подрядчиков.</p>
+    <div class="toc">
+      <div class="toc-title">Содержание</div>
+      <ul class="toc-list">
+        <li><a href="#identity">Идентичность бренда</a></li>
+        <li><a href="#logo">Логотип</a></li>
+        <li><a href="#colors">Цветовая палитра</a></li>
+        <li><a href="#typography">Типографика</a></li>
+        <li><a href="#components">UI компоненты</a></li>
+        <li><a href="#spacing">Сетка и отступы</a></li>
+        <li><a href="#voice">Голос бренда</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- IDENTITY -->
+  <section id="identity">
+    <div class="section-label">01 — Идентичность</div>
+    <h2>Характер бренда</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div class="type-specimen" style="padding:24px;">
+        <div class="type-label">Миссия</div>
+        <p style="font-size:15px; color:var(--gray-100); line-height:1.7;">Производство высокоточных компонентов для беспилотных систем — там, где инженерия важнее маркетинга.</p>
+      </div>
+      <div class="type-specimen" style="padding:24px;">
+        <div class="type-label">Позиционирование</div>
+        <p style="font-size:15px; color:var(--gray-100); line-height:1.7;">B2B производитель UAV-компонентов. Аудитория — инженеры, интеграторы, OEM-партнёры.</p>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:12px;">
+      <div class="type-specimen" style="padding:20px; text-align:center;">
+        <div style="font-size:24px; font-weight:800; color:var(--blue); margin-bottom:6px;">Точность</div>
+        <p style="font-size:12px;">Технические характеристики — главный аргумент</p>
+      </div>
+      <div class="type-specimen" style="padding:20px; text-align:center;">
+        <div style="font-size:24px; font-weight:800; color:var(--blue); margin-bottom:6px;">Надёжность</div>
+        <p style="font-size:12px;">Промышленный стандарт качества</p>
+      </div>
+      <div class="type-specimen" style="padding:20px; text-align:center;">
+        <div style="font-size:24px; font-weight:800; color:var(--blue); margin-bottom:6px;">Ясность</div>
+        <p style="font-size:12px;">Без лишних слов — только данные</p>
+      </div>
+      <div class="type-specimen" style="padding:20px; text-align:center;">
+        <div style="font-size:24px; font-weight:800; color:var(--blue); margin-bottom:6px;">Серьёзность</div>
+        <p style="font-size:12px;">Профессиональный тон, B2B контекст</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- LOGO -->
+  <section id="logo">
+    <div class="section-label">02 — Логотип</div>
+    <h2>Правила использования логотипа</h2>
+
+    <h3>Версии на разных фонах</h3>
+    <div class="logo-grid" style="margin-bottom:32px;">
+      <div class="logo-box dark">
+        <div class="logo-text"><span class="gr-g">G</span>lobal<span class="gr-r">R</span>obotex</div>
+        <div class="logo-box-label">На тёмном — основная</div>
+      </div>
+      <div class="logo-box mid">
+        <div class="logo-text"><span class="gr-g">G</span>lobal<span class="gr-r">R</span>obotex</div>
+        <div class="logo-box-label">На среднем фоне</div>
+      </div>
+      <div class="logo-box light">
+        <div class="logo-text on-light"><span class="gr-g">G</span>lobal<span class="gr-r">R</span>obotex</div>
+        <div class="logo-box-label" style="color:#4A5F7A;">На светлом фоне</div>
+      </div>
+    </div>
+
+    <h3>Охранная зона</h3>
+    <p style="margin-bottom:16px;">Минимальный отступ вокруг логотипа — высота буквы «G». Никаких других элементов в этой зоне.</p>
+
+    <h3>Запрещено</h3>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+      <div class="type-specimen" style="padding:16px; opacity:0.7;">
+        <div style="font-size:16px; font-weight:800; color:var(--gray-500); text-decoration:line-through; margin-bottom:6px;">GlobalRobotex</div>
+        <div class="type-label">Не менять цвет на серый</div>
+      </div>
+      <div class="type-specimen" style="padding:16px; opacity:0.7;">
+        <div style="font-size:16px; font-weight:800; transform:scaleX(1.4); display:inline-block; margin-bottom:6px;">GR</div>
+        <div class="type-label">Не растягивать</div>
+      </div>
+      <div class="type-specimen" style="padding:16px; opacity:0.7;">
+        <div style="font-size:16px; font-weight:800; background:red; padding:4px 8px; border-radius:4px; display:inline-block; margin-bottom:6px;">GlobalRobotex</div>
+        <div class="type-label">Не на цветном фоне</div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- COLORS -->
+  <section id="colors">
+    <div class="section-label">03 — Цвет</div>
+    <h2>Цветовая палитра</h2>
+
+    <h3>Основные цвета</h3>
+    <div class="swatches" style="margin-bottom:32px;">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#060D1F;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Navy Primary</div>
+          <div class="swatch-hex">#060D1F</div>
+          <div class="swatch-use">Главный фон</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0B1527;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Navy Secondary</div>
+          <div class="swatch-hex">#0B1527</div>
+          <div class="swatch-use">Фон секций</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#111E36;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Navy Card</div>
+          <div class="swatch-hex">#111E36</div>
+          <div class="swatch-use">Карточки, панели</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1A2D4A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Navy Border</div>
+          <div class="swatch-hex">#1A2D4A</div>
+          <div class="swatch-use">Разделители, рамки</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Акцентный цвет</h3>
+    <div class="swatches" style="margin-bottom:32px;">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#3A8FE8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Blue Primary</div>
+          <div class="swatch-hex">#3A8FE8</div>
+          <div class="swatch-use">Акцент, CTA, лого</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#5AAAF5;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Blue Light</div>
+          <div class="swatch-hex">#5AAAF5</div>
+          <div class="swatch-use">Hover состояния</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1E6FC4;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Blue Dark</div>
+          <div class="swatch-hex">#1E6FC4</div>
+          <div class="swatch-use">Active / pressed</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:rgba(58,143,232,0.12); border:1px solid #1A2D4A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Blue Tint</div>
+          <div class="swatch-hex">rgba(58,143,232,0.12)</div>
+          <div class="swatch-use">Фон бейджей, tint</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Текст</h3>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8EDF5;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Text Primary</div>
+          <div class="swatch-hex">#E8EDF5</div>
+          <div class="swatch-use">Заголовки, акцент</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#9BAFC8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Text Secondary</div>
+          <div class="swatch-hex">#9BAFC8</div>
+          <div class="swatch-use">Основной текст</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#4A5F7A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Text Muted</div>
+          <div class="swatch-hex">#4A5F7A</div>
+          <div class="swatch-use">Подписи, плейсхолдеры</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- TYPOGRAPHY -->
+  <section id="typography">
+    <div class="section-label">04 — Типографика</div>
+    <h2>Шрифтовая система</h2>
+    <p style="margin-bottom:32px;">Единственный шрифт — <strong style="color:var(--gray-100);">Inter</strong>. Загружается из Google Fonts. Вес 300–800.</p>
+
+    <div class="type-specimen">
+      <div class="type-label">H1 — Hero / страница — Inter 800, 40–56px, tracking -0.02em</div>
+      <div class="t-h1">Propulsion Systems<br>for Industrial UAV</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">H2 — Заголовок секции — Inter 700, 28px, tracking -0.01em</div>
+      <div class="t-h2">Featured Products</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">H3 — Подзаголовок — Inter 600, 20px</div>
+      <div class="t-h3">U8 Lite L Efficiency Motor</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Body — Основной текст — Inter 400, 15px, leading 1.7</div>
+      <div class="t-body">High-performance UAV motor designed for industrial applications. Features precision engineering and exceptional efficiency for long-range missions and heavy payload systems.</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Label / Caption — Inter 600, 11px, uppercase, tracking 0.12em</div>
+      <div class="t-small">Motors · Industrial Grade · KV110</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Mono — технические данные — Courier New / monospace, 13px</div>
+      <div class="t-mono">KV: 110 · Weight: 196g · Max Current: 40A · Voltage: 6–12S</div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- COMPONENTS -->
+  <section id="components">
+    <div class="section-label">05 — Компоненты</div>
+    <h2>UI Kit</h2>
+
+    <h3>Навигация</h3>
+    <div class="nav-preview" style="margin-bottom:32px;">
+      <div class="nav-logo"><span>G</span>lobal<span>R</span>obotex</div>
+      <div class="nav-links">
+        <a href="#" class="nav-link active">Products</a>
+        <a href="#" class="nav-link">Catalog</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Contact</a>
+      </div>
+      <button class="btn btn-primary btn-sm">Request Quote</button>
+    </div>
+
+    <h3>Кнопки</h3>
+    <div class="comp-row" style="margin-bottom:32px;">
+      <button class="btn btn-primary">Request Quote</button>
+      <button class="btn btn-outline">View Catalog</button>
+      <button class="btn btn-ghost">Learn More</button>
+      <button class="btn btn-primary btn-sm">Contact Us</button>
+      <button class="btn btn-outline btn-sm">Download PDF</button>
+    </div>
+
+    <h3>Бейджи / теги</h3>
+    <div class="comp-row" style="margin-bottom:32px;">
+      <span class="badge badge-blue">Motors</span>
+      <span class="badge badge-blue">ESC</span>
+      <span class="badge badge-blue">Propellers</span>
+      <span class="badge badge-gray">Industrial</span>
+      <span class="badge badge-gray">New</span>
+    </div>
+
+    <h3>Карточка продукта</h3>
+    <div class="comp-row" style="margin-bottom:32px;">
+      <div class="product-card">
+        <div class="card-img">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="10" stroke="#3A8FE8" stroke-width="1.5"/>
+            <circle cx="24" cy="24" r="3" fill="#3A8FE8"/>
+            <line x1="24" y1="4" x2="24" y2="14" stroke="#3A8FE8" stroke-width="1.5"/>
+            <line x1="24" y1="34" x2="24" y2="44" stroke="#3A8FE8" stroke-width="1.5"/>
+            <line x1="4" y1="24" x2="14" y2="24" stroke="#3A8FE8" stroke-width="1.5"/>
+            <line x1="34" y1="24" x2="44" y2="24" stroke="#3A8FE8" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Motors</div>
+          <div class="card-name">U8 Lite L Motor</div>
+          <div class="card-spec">KV110 · 196g · 6–12S</div>
+        </div>
+        <div class="card-footer">
+          <span class="badge badge-blue">Industrial</span>
+          <button class="btn btn-outline btn-sm">Details</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-img">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <ellipse cx="24" cy="24" rx="18" ry="6" stroke="#3A8FE8" stroke-width="1.5"/>
+            <line x1="24" y1="6" x2="24" y2="42" stroke="#3A8FE8" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Propellers</div>
+          <div class="card-name">NS17×5.8 Carbon</div>
+          <div class="card-spec">17" · Ultra Light · CF</div>
+        </div>
+        <div class="card-footer">
+          <span class="badge badge-gray">Carbon</span>
+          <button class="btn btn-outline btn-sm">Details</button>
+        </div>
+      </div>
+    </div>
+
+    <h3>Поля ввода / форма</h3>
+    <div class="comp-row">
+      <input class="inp" type="text" placeholder="Company name">
+      <input class="inp" type="email" placeholder="Email address">
+      <button class="btn btn-primary">Send Request</button>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SPACING -->
+  <section id="spacing">
+    <div class="section-label">06 — Сетка и отступы</div>
+    <h2>Пространство и сетка</h2>
+
+    <h3>Базовая единица — 4px</h3>
+    <div class="spacing-row" style="margin-bottom:32px;">
+      <div class="sp-item"><div class="sp-block" style="height:4px;"></div><div class="sp-label">4px</div></div>
+      <div class="sp-item"><div class="sp-block" style="height:8px;"></div><div class="sp-label">8px</div></div>
+      <div class="sp-item"><div class="sp-block" style="height:12px;"></div><div class="sp-label">12px</div></div>
+      <div class="sp-item"><div class="sp-block" style="height:16px;"></div><div class="sp-label">16px</div></div>
+      <div class="sp-item"><div class="sp-block" style="height:24px;"></div><div class="sp-label">24px</div></div>
+      <div class="sp-item"><div class="sp-block" style="height:32px;"></div><div class="sp-label">32px</div></div>
+      <div class="sp-item"><div class="sp-block" style="height:48px;"></div><div class="sp-label">48px</div></div>
+      <div class="sp-item"><div class="sp-block" style="height:64px;"></div><div class="sp-label">64px</div></div>
+    </div>
+
+    <h3>12-колоночная сетка · max-width 1280px · gutter 24px</h3>
+    <div class="grid-demo">
+      <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+      <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+      <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+      <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+    </div>
+    <p style="margin-top:12px; font-size:13px;">Карточки продуктов — 4 колонки (десктоп), 2 (планшет), 1 (мобайл).</p>
+  </section>
+
+  <hr>
+
+  <!-- VOICE -->
+  <section id="voice">
+    <div class="section-label">07 — Голос бренда</div>
+    <h2>Тон и коммуникация</h2>
+    <div class="voice-grid">
+      <div class="voice-card yes">
+        <div class="voice-tag yes-tag">✓ Так говорим</div>
+        <div class="voice-item">Конкретные характеристики: KV, вес, ток</div>
+        <div class="voice-item">Технический язык без воды</div>
+        <div class="voice-item">«Request a Quote» — не «Buy Now»</div>
+        <div class="voice-item">Короткие предложения, факты</div>
+        <div class="voice-item">Английский как основной язык интерфейса</div>
+      </div>
+      <div class="voice-card no">
+        <div class="voice-tag no-tag">✗ Избегаем</div>
+        <div class="voice-item">«Revolutionary», «Game-changing»</div>
+        <div class="voice-item">Восклицательные знаки и emoji</div>
+        <div class="voice-item">Размытые обещания без цифр</div>
+        <div class="voice-item">Потребительский тон (B2C)</div>
+        <div class="voice-item">Неформальный сленг</div>
+      </div>
+    </div>
+
+    <div class="type-specimen" style="margin-top:12px; padding:24px;">
+      <div class="type-label">Пример — описание продукта</div>
+      <p style="color:var(--gray-100); font-size:15px; line-height:1.8;">
+        <strong style="color:var(--blue);">✓</strong> &nbsp;U8 Lite L — efficiency-type UAV motor. KV110, 196g, max current 40A. Designed for long-endurance multirotor platforms operating at 6–12S voltage.<br><br>
+        <strong style="color:var(--gray-500);">✗</strong> &nbsp;<span style="color:var(--gray-500); text-decoration:line-through;">Revolutionary motor that will change the way you think about drone performance!</span>
+      </p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- CSS VARS -->
+  <section>
+    <div class="section-label">08 — Для разработчика</div>
+    <h2>CSS переменные</h2>
+    <div class="type-specimen" style="padding:24px;">
+      <pre class="t-mono" style="font-size:12px; line-height:1.9; white-space:pre-wrap;">:root {
+  /* Backgrounds */
+  --color-bg-primary:    #060D1F;
+  --color-bg-secondary:  #0B1527;
+  --color-bg-card:       #111E36;
+  --color-border:        #1A2D4A;
+
+  /* Accent */
+  --color-accent:        #3A8FE8;
+  --color-accent-hover:  #5AAAF5;
+  --color-accent-active: #1E6FC4;
+  --color-accent-tint:   rgba(58,143,232,0.12);
+
+  /* Text */
+  --color-text-primary:   #E8EDF5;
+  --color-text-secondary: #9BAFC8;
+  --color-text-muted:     #4A5F7A;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Courier New', monospace;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}</pre>
+    </div>
+  </section>
+
+  <div style="padding:64px 0 0; color:var(--gray-500); font-size:12px;">
+    GlobalRobotex Brand Guidelines · v1.0 · 2026 · Для внутреннего использования
+  </div>
+
+</div>
+</body>
+</html>

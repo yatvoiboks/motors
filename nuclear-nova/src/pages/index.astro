@@ -1,17 +1,472 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import products from '../data/products.json';
 
+const R2_BASE = import.meta.env.R2_BASE_URL ?? 'https://cdn.globalrobotex.com/products';
+function photoUrl(sku: string, key: string) { return `${R2_BASE}/${sku}/${key}`; }
+function drawingUrl(sku: string, key: string) { return `${R2_BASE}/${sku}/drawings/${key}`; }
+
+// show only first 4 on homepage
+const featured = products.slice(0, 4);
 ---
+<Layout title="GlobalRobotex — UAV Components" activePage="home">
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<!-- ─── HERO ─────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container hero-inner">
+
+    <!-- Left: copy -->
+    <div class="hero-copy">
+      <div class="section-label">Industrial UAV Components</div>
+      <h1>Propulsion Systems<br>for Industrial <span class="accent">UAV</span></h1>
+      <p class="hero-sub">
+        High-precision motors, ESCs and propellers for industrial multirotor platforms.
+        B2B supply · OEM partnerships · technical documentation included.
+      </p>
+      <div class="hero-actions">
+        <a href="/catalog" class="btn btn-primary">View Catalog</a>
+        <a href="/contact" class="btn btn-outline">Request Quote</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-val">40+</span>
+          <span class="stat-label">SKUs in stock</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-val">6–14S</span>
+          <span class="stat-label">Voltage range</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-val">OEM</span>
+          <span class="stat-label">Custom orders</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: technical SVG illustration -->
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+        <!-- grid -->
+        <defs>
+          <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#1A2D4A" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="420" height="420" fill="url(#grid)" opacity="0.6"/>
+
+        <!-- outer ring -->
+        <circle cx="210" cy="210" r="150" stroke="#1A2D4A" stroke-width="1"/>
+        <!-- mid ring -->
+        <circle cx="210" cy="210" r="100" stroke="#1A2D4A" stroke-width="1"/>
+        <!-- inner ring (stator) -->
+        <circle cx="210" cy="210" r="52"  stroke="#3A8FE8" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+        <!-- shaft -->
+        <circle cx="210" cy="210" r="14"  fill="#111E36" stroke="#3A8FE8" stroke-width="1.5"/>
+        <circle cx="210" cy="210" r="5"   fill="#3A8FE8"/>
+
+        <!-- 4 arms -->
+        <line x1="210" y1="60"  x2="210" y2="158" stroke="#3A8FE8" stroke-width="1.2" opacity="0.5"/>
+        <line x1="210" y1="262" x2="210" y2="360" stroke="#3A8FE8" stroke-width="1.2" opacity="0.5"/>
+        <line x1="60"  y1="210" x2="158" y2="210" stroke="#3A8FE8" stroke-width="1.2" opacity="0.5"/>
+        <line x1="262" y1="210" x2="360" y2="210" stroke="#3A8FE8" stroke-width="1.2" opacity="0.5"/>
+
+        <!-- blade silhouettes (simplified ellipses) -->
+        <!-- top -->
+        <ellipse cx="210" cy="105" rx="16" ry="48" fill="#111E36" stroke="#3A8FE8" stroke-width="1.2" opacity="0.85"/>
+        <!-- bottom -->
+        <ellipse cx="210" cy="315" rx="16" ry="48" fill="#111E36" stroke="#3A8FE8" stroke-width="1.2" opacity="0.85"/>
+        <!-- left -->
+        <ellipse cx="105" cy="210" rx="48" ry="16" fill="#111E36" stroke="#3A8FE8" stroke-width="1.2" opacity="0.85"/>
+        <!-- right -->
+        <ellipse cx="315" cy="210" rx="48" ry="16" fill="#111E36" stroke="#3A8FE8" stroke-width="1.2" opacity="0.85"/>
+
+        <!-- dimension lines -->
+        <!-- diameter top-bottom -->
+        <line x1="195" y1="57" x2="195" y2="363" stroke="#4A5F7A" stroke-width="0.8" stroke-dasharray="3 3"/>
+        <line x1="190" y1="57"  x2="200" y2="57"  stroke="#4A5F7A" stroke-width="0.8"/>
+        <line x1="190" y1="363" x2="200" y2="363" stroke="#4A5F7A" stroke-width="0.8"/>
+        <text x="178" y="215" font-family="Courier New" font-size="9" fill="#4A5F7A" text-anchor="middle" transform="rotate(-90 178 215)">∅ 100 mm</text>
+
+        <!-- stator label -->
+        <line x1="263" y1="210" x2="295" y2="180" stroke="#3A8FE8" stroke-width="0.8" opacity="0.5"/>
+        <text x="298" y="177" font-family="Courier New" font-size="9" fill="#5AAAF5">Stator 100×22</text>
+
+        <!-- KV label -->
+        <text x="222" y="213" font-family="Courier New" font-size="9" fill="#5AAAF5">KV110</text>
+
+        <!-- corner marks -->
+        <path d="M 20 40 L 20 20 L 40 20"  stroke="#3A8FE8" stroke-width="0.8" opacity="0.4"/>
+        <path d="M 380 40 L 380 20 L 360 20" stroke="#3A8FE8" stroke-width="0.8" opacity="0.4"/>
+        <path d="M 20 380 L 20 400 L 40 400" stroke="#3A8FE8" stroke-width="0.8" opacity="0.4"/>
+        <path d="M 380 380 L 380 400 L 360 400" stroke="#3A8FE8" stroke-width="0.8" opacity="0.4"/>
+
+        <!-- model label bottom -->
+        <text x="210" y="400" font-family="Courier New" font-size="9" fill="#4A5F7A" text-anchor="middle">U8 Lite L · GlobalRobotex</text>
+      </svg>
+    </div>
+
+  </div>
+  <div class="hero-glow"></div>
+</section>
+
+<!-- ─── FEATURED PRODUCTS ─────────────────────────────────────────────── -->
+<section id="catalog" class="catalog-section">
+  <div class="container">
+    <div class="section-label">Products</div>
+    <div class="catalog-head">
+      <h2>Featured Components</h2>
+      <a href="/catalog" class="btn btn-ghost btn-sm">View Full Catalog →</a>
+    </div>
+
+    <div class="product-grid">
+      {featured.map((p) => (
+        <article class="product-card" data-cat={p.category}>
+
+          <!-- Photo -->
+          <div class="card-photo">
+            <img
+              src={photoUrl(p.sku, p.photos[0])}
+              alt={p.name}
+              loading="lazy"
+              decoding="async"
+              width="400" height="400"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+            />
+            <div class="card-photo-placeholder" style="display:none">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <circle cx="24" cy="24" r="10" stroke="#3A8FE8" stroke-width="1.5"/>
+                <circle cx="24" cy="24" r="3" fill="#3A8FE8"/>
+                <line x1="24" y1="4" x2="24" y2="14" stroke="#3A8FE8" stroke-width="1.5"/>
+                <line x1="24" y1="34" x2="24" y2="44" stroke="#3A8FE8" stroke-width="1.5"/>
+                <line x1="4" y1="24" x2="14" y2="24" stroke="#3A8FE8" stroke-width="1.5"/>
+                <line x1="34" y1="24" x2="44" y2="24" stroke="#3A8FE8" stroke-width="1.5"/>
+              </svg>
+            </div>
+            {p.photos.length > 1 && (
+              <div class="photo-dots">
+                {p.photos.map((_, i) => (
+                  <button
+                    class={`photo-dot${i === 0 ? ' active' : ''}`}
+                    data-idx={i}
+                    data-sku={p.sku}
+                    aria-label={`Photo ${i + 1}`}
+                  ></button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <!-- Body -->
+          <div class="card-body">
+            <div class="card-top">
+              <span class="card-cat">{p.category}</span>
+              <span class={`badge ${p.badge === 'New' ? 'badge-gray' : 'badge-blue'}`}>{p.badge}</span>
+            </div>
+            <h3 class="card-name">{p.name}</h3>
+            <p class="card-desc">{p.description}</p>
+            <dl class="specs-table">
+              {Object.entries(p.specs).map(([k, v]) => (
+                <>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </>
+              ))}
+            </dl>
+          </div>
+
+          <!-- Drawings -->
+          <div class="card-drawings">
+            <button class="drawings-toggle" aria-expanded="false">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <rect x="1" y="1" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="4" y1="4.5" x2="10" y2="4.5" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="4" y1="7"   x2="10" y2="7"   stroke="currentColor" stroke-width="1.2"/>
+                <line x1="4" y1="9.5" x2="7.5" y2="9.5" stroke="currentColor" stroke-width="1.2"/>
+              </svg>
+              Technical Drawings
+              <span class="drawings-count">{p.drawings.length}</span>
+              <svg class="toggle-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="drawings-list" hidden>
+              {p.drawings.map((d) => (
+                <a href={drawingUrl(p.sku, d.key)} class="drawing-item" download target="_blank" rel="noopener">
+                  <span class={`drawing-icon drawing-icon-${d.type}`}>{d.type === 'pdf' ? 'PDF' : 'CAD'}</span>
+                  <span class="drawing-label">{d.label}</span>
+                  <svg class="drawing-dl" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M6 2v6M3.5 6l2.5 2.5L8.5 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="2" y1="10.5" x2="10" y2="10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="card-footer">
+            <a href={`/contact?product=${encodeURIComponent(p.name)}`} class="btn btn-outline btn-sm">Request Quote</a>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+    <div class="catalog-cta">
+      <a href="/catalog" class="btn btn-outline">Browse all {products.length} products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ──────────────────────────────────────────────────────────── -->
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2>Engineering over marketing</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          GlobalRobotex manufactures high-precision propulsion components for industrial
+          unmanned aerial systems. We supply motors, ESCs and propellers to integrators,
+          OEM partners and R&amp;D teams worldwide.
+        </p>
+        <p>
+          All specifications are measured values. Technical drawings and CAD files
+          are included with every order.
+        </p>
+      </div>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-title">Precision</div>
+          <div class="value-desc">Specifications are the primary argument, not marketing copy</div>
+        </div>
+        <div class="value-item">
+          <div class="value-title">Reliability</div>
+          <div class="value-desc">Industrial-grade quality control on every production batch</div>
+        </div>
+        <div class="value-item">
+          <div class="value-title">Transparency</div>
+          <div class="value-desc">Full dimensional drawings and CAD models available for all SKUs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT CTA ───────────────────────────────────────────────────── -->
+<section id="contact" class="contact-cta">
+  <div class="container contact-cta-inner">
+    <div>
+      <div class="section-label">Contact</div>
+      <h2>Ready to source components?</h2>
+      <p>Send us your platform specs — we respond within one business day.</p>
+    </div>
+    <a href="/contact" class="btn btn-primary">Request a Quote →</a>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+  /* ── HERO ─────────────────────────────────────────────────────────────*/
+  .hero {
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: 1fr 420px;
+    gap: 48px; align-items: center;
+    padding-top: 80px; padding-bottom: 80px;
+  }
+  .hero-glow {
+    position: absolute; top: -100px; right: -60px;
+    width: 700px; height: 700px; pointer-events: none;
+    background: radial-gradient(circle, rgba(58,143,232,0.07) 0%, transparent 65%);
+  }
+  .hero-copy { position: relative; z-index: 1; }
+  .hero-copy h1 { margin-bottom: 20px; }
+  .hero-sub { font-size: 16px; color: var(--text-2); max-width: 480px; margin-bottom: 36px; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+
+  .hero-stats { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+  .stat-val { font-size: 22px; font-weight: 700; color: var(--text-1); letter-spacing: -0.01em; }
+  .stat-label { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; }
+  .stat-div { width: 1px; height: 36px; background: var(--border); }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-svg { width: 100%; max-width: 420px; height: auto; opacity: 0.9; }
+
+  /* ── CATALOG ─────────────────────────────────────────────────────────*/
+  .catalog-section { padding: 72px 0; }
+  .catalog-head {
+    display: flex; align-items: baseline;
+    justify-content: space-between; flex-wrap: wrap;
+    gap: 12px; margin-bottom: 0;
+  }
+  .catalog-head h2 { margin-bottom: 32px; }
+
+  .product-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+
+  /* Product card */
+  .product-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--r-lg); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .product-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .card-photo {
+    position: relative; aspect-ratio: 1;
+    background: var(--bg-2); overflow: hidden;
+  }
+  .card-photo img {
+    width: 100%; height: 100%;
+    object-fit: contain; padding: 16px; transition: transform 0.3s;
+  }
+  .product-card:hover .card-photo img { transform: scale(1.04); }
+  .card-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center; opacity: 0.3;
+  }
+  .photo-dots {
+    position: absolute; bottom: 8px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 5px;
+  }
+  .photo-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-3); border: none; cursor: pointer;
+    padding: 0; transition: background 0.15s;
+  }
+  .photo-dot.active { background: var(--accent); }
+
+  .card-body { padding: 16px; flex: 1; }
+  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .card-cat { font-size: 10px; color: var(--accent); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .card-name { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; line-height: 1.3; }
+  .card-desc { font-size: 12px; color: var(--text-3); line-height: 1.6; margin-bottom: 14px; }
+
+  .specs-table { display: grid; grid-template-columns: auto 1fr; gap: 3px 16px; font-family: var(--mono); font-size: 11px; }
+  .specs-table dt { color: var(--text-3); white-space: nowrap; }
+  .specs-table dd { color: var(--accent-h); font-weight: 500; }
+
+  .card-drawings { border-top: 1px solid var(--border); }
+  .drawings-toggle {
+    width: 100%; padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--font); font-size: 12px; font-weight: 600;
+    color: var(--text-2); text-align: left; transition: color 0.15s;
+  }
+  .drawings-toggle:hover { color: var(--text-1); }
+  .drawings-toggle svg:first-child { color: var(--accent); flex-shrink: 0; }
+  .drawings-count {
+    font-size: 10px; font-weight: 700;
+    background: var(--accent-tint); color: var(--accent-h);
+    border: 1px solid rgba(58,143,232,0.25);
+    padding: 1px 7px; border-radius: 10px;
+  }
+  .toggle-chevron { margin-left: auto; color: var(--text-3); transition: transform 0.2s; flex-shrink: 0; }
+  .drawings-toggle[aria-expanded="true"] .toggle-chevron { transform: rotate(180deg); }
+  .drawings-list { padding: 0 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .drawings-list[hidden] { display: none; }
+  .drawing-item {
+    display: flex; align-items: center; gap: 8px; padding: 7px 10px;
+    border-radius: var(--r); background: var(--bg-2); border: 1px solid var(--border);
+    text-decoration: none; color: var(--text-2); font-size: 12px; font-weight: 500;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .drawing-item:hover { border-color: var(--accent); color: var(--text-1); }
+  .drawing-icon { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; flex-shrink: 0; }
+  .drawing-icon-pdf { background: rgba(220,50,50,0.15); color: #e06060; border: 1px solid rgba(220,50,50,0.25); }
+  .drawing-icon-cad { background: var(--accent-tint); color: var(--accent-h); border: 1px solid rgba(58,143,232,0.25); }
+  .drawing-label { flex: 1; }
+  .drawing-dl { color: var(--text-3); margin-left: auto; flex-shrink: 0; }
+  .drawing-item:hover .drawing-dl { color: var(--accent); }
+
+  .card-footer { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; }
+
+  .catalog-cta { margin-top: 40px; display: flex; justify-content: center; }
+
+  /* ── ABOUT ──────────────────────────────────────────────────────────── */
+  .about-section {
+    padding: 72px 0;
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .about-text p { margin-bottom: 16px; }
+  .about-values { display: flex; flex-direction: column; gap: 12px; }
+  .value-item {
+    padding: 16px 20px; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: var(--r-lg);
+  }
+  .value-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+  .value-desc { font-size: 13px; color: var(--text-2); }
+
+  /* ── CONTACT CTA ─────────────────────────────────────────────────────── */
+  .contact-cta { padding: 72px 0; }
+  .contact-cta-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 32px; flex-wrap: wrap;
+  }
+  .contact-cta-inner h2 { margin-bottom: 8px; }
+  .contact-cta-inner p { margin: 0; }
+  .contact-cta-inner .btn { flex-shrink: 0; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 800px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .contact-cta-inner { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 500px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .hero-inner { padding-top: 56px; padding-bottom: 56px; }
+  }
+</style>
+
+<script>
+  const R2_BASE = (import.meta.env.R2_BASE_URL as string | undefined) ?? 'https://cdn.globalrobotex.com/products';
+  import productsData from '../data/products.json';
+  const photoMap: Record<string, string[]> = {};
+  for (const p of productsData) photoMap[p.sku] = p.photos;
+
+  // Photo switcher
+  document.querySelectorAll<HTMLButtonElement>('.photo-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const card = dot.closest('.product-card') as HTMLElement;
+      const sku  = dot.dataset.sku ?? '';
+      const idx  = Number(dot.dataset.idx ?? 0);
+      const img  = card.querySelector<HTMLImageElement>('.card-photo img');
+      if (img) img.src = `${R2_BASE}/${sku}/${photoMap[sku]?.[idx] ?? ''}`;
+      card.querySelectorAll('.photo-dot').forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+    });
+  });
+
+  // Drawings toggle
+  document.querySelectorAll<HTMLButtonElement>('.drawings-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const list = btn.nextElementSibling as HTMLElement;
+      expanded ? list.setAttribute('hidden', '') : list.removeAttribute('hidden');
+    });
+  });
+</script>

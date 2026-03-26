@@ -6,7 +6,12 @@ interface Props {
   noindex?: boolean;
 }
 
-const { title = 'Product Catalog | B2B Drone Components', description = 'Professional product catalog for UAV motors, ESCs, propellers and propulsion systems. Request a quote for your project.', image = '/products/placeholder.svg', noindex = false } = Astro.props;
+const {
+  title = 'GlobalRobotex — UAV Components',
+  description = 'B2B manufacturer of high-precision propulsion components for industrial UAV systems: motors, ESCs, propellers.',
+  image = '/products/placeholder.svg',
+  noindex = false,
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -19,33 +24,108 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
-    <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.site)} />
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
-  <body class="font-sans text-primary bg-slate-50 antialiased">
+  <body>
     <slot />
   </body>
 </html>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Backgrounds */
+    --bg:        #060D1F;
+    --bg-2:      #0B1527;
+    --bg-card:   #111E36;
+    --border:    #1A2D4A;
+
+    /* Accent */
+    --accent:    #3A8FE8;
+    --accent-h:  #5AAAF5;
+    --accent-d:  #1E6FC4;
+    --accent-t:  rgba(58,143,232,0.12);
+
+    /* Text */
+    --t1: #E8EDF5;
+    --t2: #9BAFC8;
+    --t3: #4A5F7A;
+
+    /* Typography */
+    --font: 'Inter', system-ui, sans-serif;
+    --mono: 'Courier New', monospace;
+
+    /* Radius */
+    --r:    6px;
+    --r-lg: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--t1);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* Global reusable utilities */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: var(--r);
+    font-family: var(--font); font-size: 14px; font-weight: 600;
+    cursor: pointer; border: none; text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    white-space: nowrap; line-height: 1;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-h); }
+  .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn-outline:hover { background: var(--accent-t); }
+  .btn-sm { padding: 7px 14px; font-size: 12px; }
+
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .badge-blue { background: var(--accent-t); color: var(--accent-h); border: 1px solid rgba(58,143,232,0.3); }
+  .badge-gray { background: rgba(255,255,255,0.05); color: var(--t2); border: 1px solid var(--border); }
+</style>

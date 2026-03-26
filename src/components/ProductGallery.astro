@@ -4,35 +4,30 @@ interface Props {
   image: string;
   images?: string[];
 }
-
 const { name, image, images = [] } = Astro.props;
-const galleryImages = images.length > 0 ? images : [image];
+const gallery = images.length > 0 ? images : [image];
 ---
 
-<div class="product-gallery">
-  <div class="relative bg-white rounded-xl border border-slate-200 overflow-hidden">
+<div class="gallery">
+  <div class="gallery-main">
     <img
-      id="gallery-main"
-      src={galleryImages[0]}
+      id="gallery-main-img"
+      src={gallery[0]}
       alt={name}
-      width="600"
-      height="600"
-      class="w-full aspect-square object-contain p-8"
+      width="600" height="600"
       loading="eager"
     />
   </div>
-  {galleryImages.length > 1 && (
-    <div class="flex gap-2 mt-4 overflow-x-auto pb-2">
-      {galleryImages.map((src, i) => (
+  {gallery.length > 1 && (
+    <div class="gallery-thumbs">
+      {gallery.map((src, i) => (
         <button
           type="button"
-          data-gallery-thumb
-          data-index={i}
-          class={`flex-shrink-0 w-16 h-16 rounded-lg border-2 overflow-hidden transition-colors ${
-            i === 0 ? 'border-accent' : 'border-slate-200 hover:border-slate-300'
-          }`}
+          class={`thumb${i === 0 ? ' active' : ''}`}
+          data-src={src}
+          aria-label={`View ${i + 1}`}
         >
-          <img src={src} alt={`${name} view ${i + 1}`} class="w-full h-full object-contain" loading="lazy" />
+          <img src={src} alt={`${name} view ${i + 1}`} loading="lazy" />
         </button>
       ))}
     </div>
@@ -40,19 +35,41 @@ const galleryImages = images.length > 0 ? images : [image];
 </div>
 
 <script>
-  document.querySelectorAll('[data-gallery-thumb]').forEach((btn) => {
+  const mainImg = document.getElementById('gallery-main-img') as HTMLImageElement | null;
+  document.querySelectorAll<HTMLButtonElement>('.thumb').forEach(btn => {
     btn.addEventListener('click', () => {
-      const main = document.getElementById('gallery-main');
-      const src = btn.querySelector('img')?.src;
-      if (main && src) {
-        main.src = src;
-        document.querySelectorAll('[data-gallery-thumb]').forEach((b) => {
-          b.classList.remove('border-accent');
-          b.classList.add('border-slate-200');
-        });
-        btn.classList.add('border-accent');
-        btn.classList.remove('border-slate-200');
-      }
+      if (mainImg) mainImg.src = btn.dataset.src ?? '';
+      document.querySelectorAll('.thumb').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     });
   });
 </script>
+
+<style>
+  .gallery-main {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .gallery-main img {
+    width: 100%; aspect-ratio: 1;
+    object-fit: contain; object-position: center;
+    padding: 32px;
+  }
+
+  .gallery-thumbs {
+    display: flex; gap: 8px; margin-top: 12px;
+    overflow-x: auto; padding-bottom: 4px;
+  }
+  .thumb {
+    flex-shrink: 0; width: 64px; height: 64px;
+    border-radius: var(--r); overflow: hidden;
+    border: 1.5px solid var(--border);
+    background: var(--bg-2); cursor: pointer;
+    padding: 0; transition: border-color 0.15s;
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: contain; }
+  .thumb:hover { border-color: var(--t3); }
+  .thumb.active { border-color: var(--accent); }
+</style>

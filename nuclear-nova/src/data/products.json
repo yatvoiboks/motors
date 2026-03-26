@@ -1,0 +1,82 @@
+[
+  {
+    "sku": "u8-lite-l",
+    "name": "U8 Lite L Motor",
+    "category": "Motors",
+    "badge": "Industrial",
+    "description": "Efficiency-type UAV motor for long-endurance multirotor platforms. Precision-wound stator, sealed bearings.",
+    "specs": {
+      "KV": "110",
+      "Weight": "196 g",
+      "Max Current": "40 A",
+      "Voltage": "6–12S",
+      "Stator": "100×22 mm",
+      "Shaft": "12 mm"
+    },
+    "photos": ["main.webp", "top.webp", "side.webp"],
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "CAD Model (STEP)", "key": "model.step", "type": "cad" },
+      { "label": "CAD Model (DXF)",  "key": "model.dxf",  "type": "cad" }
+    ]
+  },
+  {
+    "sku": "u10-plus",
+    "name": "U10 Plus Motor",
+    "category": "Motors",
+    "badge": "Industrial",
+    "description": "High-torque motor for heavy-lift UAV systems. Optimised for 30–50 kg MTOW platforms at 12S.",
+    "specs": {
+      "KV": "80",
+      "Weight": "360 g",
+      "Max Current": "60 A",
+      "Voltage": "12–14S",
+      "Stator": "120×35 mm",
+      "Shaft": "15 mm"
+    },
+    "photos": ["main.webp", "angle.webp"],
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "CAD Model (STEP)", "key": "model.step", "type": "cad" }
+    ]
+  },
+  {
+    "sku": "flame-80a-esc",
+    "name": "Flame 80A ESC",
+    "category": "ESC",
+    "badge": "New",
+    "description": "Field-programmable ESC with CAN/PWM input. 80A continuous, FOC & BLDC modes, over-temp protection.",
+    "specs": {
+      "Continuous": "80 A",
+      "Burst": "100 A / 10s",
+      "Voltage": "6–14S",
+      "Interface": "CAN · PWM",
+      "Weight": "78 g",
+      "Firmware": "Open"
+    },
+    "photos": ["main.webp", "pcb.webp"],
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "Pinout Diagram",      "key": "pinout.pdf",       "type": "pdf" }
+    ]
+  },
+  {
+    "sku": "ns17-58-cf",
+    "name": "NS17×5.8 Propeller",
+    "category": "Propellers",
+    "badge": "Carbon",
+    "description": "Ultra-light carbon fibre folding propeller for efficiency-focused platforms. Balanced to <0.1 g·cm.",
+    "specs": {
+      "Diameter": "17 in",
+      "Pitch": "5.8 in",
+      "Material": "Carbon Fibre",
+      "Weight": "38 g / pair",
+      "Balance": "< 0.1 g·cm",
+      "Hub": "12 mm"
+    },
+    "photos": ["main.webp", "folded.webp", "tip.webp"],
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" }
+    ]
+  }
+]

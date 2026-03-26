@@ -4,120 +4,185 @@
     "name": "TMotor F90 Motor",
     "category": "motors",
     "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg", "/products/placeholder.svg"],
-    "description": "High performance drone motor designed for racing and freestyle applications. Features precision engineering and optimal power-to-weight ratio.",
+    "images": ["/products/placeholder.svg"],
+    "description": "High-performance motor for racing and freestyle applications. Precision-wound stator, optimal power-to-weight ratio.",
     "specs": {
-      "kv": "1950KV",
-      "weight": "33g",
-      "voltage": "6S"
-    }
+      "KV": "1950 KV",
+      "Weight": "33 g",
+      "Voltage": "6S",
+      "Stator": "22×06 mm"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
+    ]
   },
   {
     "id": "tmotor-u8-lite",
     "name": "U8 Lite L Efficiency Motor",
     "category": "motors",
     "image": "/products/placeholder.svg",
-    "description": "Industrial-grade UAV motor with exceptional efficiency. Ideal for long-range missions and heavy payload applications.",
+    "images": ["/products/placeholder.svg"],
+    "description": "Efficiency-type UAV motor for long-endurance multirotor platforms. KV110, 196g, max current 40A. Designed for 6–12S voltage.",
     "specs": {
-      "kv": "110KV",
-      "weight": "485g",
-      "voltage": "12S"
-    }
+      "KV": "110 KV",
+      "Weight": "196 g",
+      "Max Current": "40 A",
+      "Voltage": "6–12S",
+      "Stator": "100×22 mm"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" },
+      { "label": "CAD Model (DXF)",     "key": "model.dxf",        "type": "cad" }
+    ]
   },
   {
     "id": "tmotor-u7-v2",
     "name": "U7 V2.0 Power Type Motor",
     "category": "motors",
     "image": "/products/placeholder.svg",
-    "description": "High-power UAV motor for demanding industrial applications. Built for reliability and consistent performance.",
+    "images": ["/products/placeholder.svg"],
+    "description": "High-power UAV motor for demanding industrial applications. Built for reliability and consistent performance under load.",
     "specs": {
-      "kv": "490KV",
-      "weight": "285g",
-      "voltage": "6S"
-    }
+      "KV": "490 KV",
+      "Weight": "285 g",
+      "Voltage": "6S",
+      "Stator": "90×25 mm"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
+    ]
   },
   {
     "id": "ns17-props",
     "name": "NS17×5.8 Carbon Propellers",
     "category": "propellers",
     "image": "/products/placeholder.svg",
-    "description": "Ultra-light carbon fiber propellers with excellent efficiency. Perfect balance of thrust and flight time.",
+    "images": ["/products/placeholder.svg"],
+    "description": "Ultra-light carbon fibre folding propellers. Balanced to <0.1 g·cm. Optimal efficiency for long-endurance platforms.",
     "specs": {
-      "diameter": "17 inch",
-      "pitch": "5.8",
-      "material": "Carbon Fiber"
-    }
+      "Diameter": "17 in",
+      "Pitch": "5.8 in",
+      "Material": "Carbon Fibre",
+      "Weight": "38 g / pair",
+      "Balance": "< 0.1 g·cm"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" }
+    ]
   },
   {
     "id": "p21-props",
     "name": "P21×6.3 Agricultural Propellers",
     "category": "propellers",
     "image": "/products/placeholder.svg",
-    "description": "Agricultural UAV propellers engineered for spray applications. Durable construction for demanding field use.",
+    "images": ["/products/placeholder.svg"],
+    "description": "Agricultural UAV propellers engineered for spray and mapping applications. Durable polymer construction for field conditions.",
     "specs": {
-      "diameter": "21 inch",
-      "pitch": "6.3",
-      "material": "Polymer"
-    }
+      "Diameter": "21 in",
+      "Pitch": "6.3 in",
+      "Material": "Polymer",
+      "Weight": "92 g / pair"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
+    ]
   },
   {
     "id": "v80a-esc",
     "name": "V80A 14S FOC ESC",
     "category": "escs",
     "image": "/products/placeholder.svg",
-    "description": "High-performance FOC ESC with smooth throttle response. Designed for professional UAV applications.",
+    "images": ["/products/placeholder.svg"],
+    "description": "High-performance FOC ESC with smooth throttle response. 80A continuous, CAN/PWM interface, over-temp protection.",
     "specs": {
-      "current": "80A",
-      "voltage": "14S",
-      "protocol": "FOC"
-    }
+      "Continuous": "80 A",
+      "Burst": "100 A / 10s",
+      "Voltage": "14S",
+      "Interface": "CAN · PWM",
+      "Weight": "68 g"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "Pinout Diagram",      "key": "pinout.pdf",       "type": "pdf" },
+      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
+    ]
   },
   {
     "id": "v120a-esc",
     "name": "V120A 14S FOC ESC",
     "category": "escs",
     "image": "/products/placeholder.svg",
-    "description": "Heavy-duty FOC ESC for large UAV systems. Advanced thermal management for extended operation.",
+    "images": ["/products/placeholder.svg"],
+    "description": "Heavy-duty FOC ESC for large UAV systems. Advanced thermal management, 120A continuous, designed for 14S platforms.",
     "specs": {
-      "current": "120A",
-      "voltage": "14S",
-      "protocol": "FOC"
-    }
+      "Continuous": "120 A",
+      "Burst": "160 A / 10s",
+      "Voltage": "14S",
+      "Interface": "CAN · PWM",
+      "Weight": "98 g"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "Pinout Diagram",      "key": "pinout.pdf",       "type": "pdf" },
+      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
+    ]
   },
   {
     "id": "vl1040-motor",
     "name": "VL1040 VTOL Motor",
     "category": "vtol",
     "image": "/products/placeholder.svg",
-    "description": "VTOL propulsion motor for hybrid UAV platforms. Optimized for vertical takeoff and forward flight.",
+    "images": ["/products/placeholder.svg"],
+    "description": "VTOL propulsion motor for hybrid UAV platforms. Optimised for vertical takeoff and efficient forward flight at 12S.",
     "specs": {
-      "kv": "150KV",
-      "weight": "1.2kg",
-      "voltage": "12S"
-    }
+      "KV": "150 KV",
+      "Weight": "1.2 kg",
+      "Voltage": "12S",
+      "Stator": "135×35 mm"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
+    ]
   },
   {
     "id": "ax435-fixed",
     "name": "AX435 Fixed-Wing Motor",
     "category": "fixed-wing",
     "image": "/products/placeholder.svg",
-    "description": "Efficient fixed-wing motor for mapping and surveillance missions. Low noise and high reliability.",
+    "images": ["/products/placeholder.svg"],
+    "description": "Efficient fixed-wing motor for mapping and surveillance missions. Low noise, high reliability, 6S operation.",
     "specs": {
-      "kv": "435KV",
-      "weight": "185g",
-      "voltage": "6S"
-    }
+      "KV": "435 KV",
+      "Weight": "185 g",
+      "Voltage": "6S",
+      "Max Current": "35 A"
+    },
+    "drawings": [
+      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
+      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
+    ]
   },
   {
     "id": "airgear-350",
     "name": "Airgear 350 Combo",
     "category": "systems",
     "image": "/products/placeholder.svg",
-    "description": "Complete propulsion system including motor, ESC and propellers. Ready for integration.",
+    "images": ["/products/placeholder.svg"],
+    "description": "Complete propulsion system — motor, ESC and propellers pre-matched. Ready for integration into 350-class frames.",
     "specs": {
-      "motor": "MN3507",
-      "esc": "V40A",
-      "props": "14×4.8"
-    }
+      "Motor": "MN3507",
+      "ESC": "V40A",
+      "Propellers": "14×4.8",
+      "System Voltage": "6S"
+    },
+    "drawings": [
+      { "label": "System Diagram",   "key": "system-diagram.pdf", "type": "pdf" },
+      { "label": "Mounting Drawing", "key": "mounting.pdf",        "type": "pdf" }
+    ]
   }
 ]

@@ -2,55 +2,88 @@
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16">
-      <div class="flex items-center">
-        <a href="/" class="flex items-center gap-2">
-          <span class="text-xl font-bold text-primary">ProductCatalog</span>
-        </a>
-      </div>
+<header class="nav-wrap">
+  <nav class="nav-inner container">
+    <a href="/" class="nav-logo">
+      <span class="la">G</span>lobal<span class="la">R</span>obotex
+    </a>
 
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="/" class={`text-sm font-medium transition-colors ${currentPath === '/' ? 'text-accent' : 'text-slate-600 hover:text-primary'}`}>
-          Home
-        </a>
-        <a href="/catalog" class={`text-sm font-medium transition-colors ${currentPath.startsWith('/catalog') ? 'text-accent' : 'text-slate-600 hover:text-primary'}`}>
-          Catalog
-        </a>
-        <a href="/about" class={`text-sm font-medium transition-colors ${currentPath === '/about' ? 'text-accent' : 'text-slate-600 hover:text-primary'}`}>
-          About
-        </a>
-        <a href="/contact" class={`text-sm font-medium transition-colors ${currentPath === '/contact' ? 'text-accent' : 'text-slate-600 hover:text-primary'}`}>
-          Contact
-        </a>
-      </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/"        class={`nav-link ${currentPath === '/' ? 'active' : ''}`}>Home</a></li>
+      <li><a href="/catalog" class={`nav-link ${currentPath.startsWith('/catalog') ? 'active' : ''}`}>Catalog</a></li>
+      <li><a href="/about"   class={`nav-link ${currentPath === '/about' ? 'active' : ''}`}>About</a></li>
+      <li><a href="/contact" class={`nav-link ${currentPath === '/contact' ? 'active' : ''}`}>Contact</a></li>
+    </ul>
 
-      <!-- Mobile menu button -->
-      <div class="md:hidden flex items-center">
-        <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Toggle menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
+    <a href="/contact" class="btn btn-primary btn-sm nav-cta">Request Quote</a>
 
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden pb-4">
-      <div class="flex flex-col space-y-2">
-        <a href="/" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg">Home</a>
-        <a href="/catalog" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg">Catalog</a>
-        <a href="/about" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg">About</a>
-        <a href="/contact" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg">Contact</a>
-      </div>
-    </div>
-  </div>
-</nav>
+    <button class="burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
 
 <script>
-  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-    const menu = document.getElementById('mobile-menu');
-    menu?.classList.toggle('hidden');
+  const burger = document.getElementById('nav-burger');
+  const links  = document.getElementById('nav-links');
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    links?.classList.toggle('open');
   });
 </script>
+
+<style>
+  .nav-wrap {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6, 13, 31, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    height: 60px;
+    display: flex; align-items: center; gap: 32px;
+  }
+  .nav-logo {
+    font-size: 16px; font-weight: 800; letter-spacing: -0.01em;
+    color: var(--t1); text-decoration: none; flex-shrink: 0;
+  }
+  .la { color: var(--accent); }
+
+  .nav-links {
+    display: flex; gap: 24px; list-style: none; flex: 1;
+  }
+  .nav-link {
+    font-size: 13px; color: var(--t2); text-decoration: none;
+    font-weight: 500; transition: color 0.15s;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--t1); }
+
+  .burger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+    margin-left: auto;
+  }
+  .burger span {
+    display: block; width: 20px; height: 1.5px;
+    background: var(--t2); border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .burger:hover span { background: var(--t1); }
+
+  @media (max-width: 640px) {
+    .burger  { display: flex; }
+    .nav-cta { display: none; }
+    .nav-links {
+      display: none; position: absolute;
+      top: 60px; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-link { display: block; padding: 10px 24px; }
+  }
+</style>
