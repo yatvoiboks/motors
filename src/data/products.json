@@ -61,6 +61,7 @@
     "category": "propellers",
     "image": "/products/placeholder.svg",
     "images": ["/products/placeholder.svg"],
+    "model3d": "/models/drone-assembled.glb",
     "description": "Ultra-light carbon fibre folding propellers. Balanced to <0.1 g·cm. Optimal efficiency for long-endurance platforms.",
     "specs": {
       "Diameter": "17 in",
