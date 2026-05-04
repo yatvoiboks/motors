@@ -3,38 +3,76 @@ interface Props {
   name: string;
   image: string;
   images?: string[];
+  model3d?: string;
 }
-const { name, image, images = [] } = Astro.props;
+const { name, image, images = [], model3d } = Astro.props;
 const gallery = images.length > 0 ? images : [image];
 ---
 
+{model3d && (
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+)}
+
 <div class="gallery">
-  <div class="gallery-main">
-    <img
-      id="gallery-main-img"
-      src={gallery[0]}
-      alt={name}
-      width="600" height="600"
-      loading="eager"
-    />
+  {model3d && (
+    <div class="view-toggle">
+      <button type="button" class="toggle-btn active" id="btn-photos">Photos</button>
+      <button type="button" class="toggle-btn" id="btn-3d">3D Model</button>
+    </div>
+  )}
+
+  <!-- Photo gallery -->
+  <div id="view-photos">
+    <div class="gallery-main">
+      <img
+        id="gallery-main-img"
+        src={gallery[0]}
+        alt={name}
+        width="600" height="600"
+        loading="eager"
+      />
+    </div>
+    {gallery.length > 1 && (
+      <div class="gallery-thumbs">
+        {gallery.map((src, i) => (
+          <button
+            type="button"
+            class={`thumb${i === 0 ? ' active' : ''}`}
+            data-src={src}
+            aria-label={`View ${i + 1}`}
+          >
+            <img src={src} alt={`${name} view ${i + 1}`} loading="lazy" />
+          </button>
+        ))}
+      </div>
+    )}
   </div>
-  {gallery.length > 1 && (
-    <div class="gallery-thumbs">
-      {gallery.map((src, i) => (
-        <button
-          type="button"
-          class={`thumb${i === 0 ? ' active' : ''}`}
-          data-src={src}
-          aria-label={`View ${i + 1}`}
-        >
-          <img src={src} alt={`${name} view ${i + 1}`} loading="lazy" />
+
+  <!-- 3D viewer -->
+  {model3d && (
+    <div id="view-3d" style="display:none">
+      <div class="viewer-wrap" id="viewer-wrap">
+        <model-viewer
+          src={model3d}
+          alt={`3D model of ${name}`}
+          auto-rotate
+          camera-controls
+          shadow-intensity="1"
+          style="width:100%;height:100%;"
+        ></model-viewer>
+        <button type="button" class="expand-btn" id="expand-btn" title="Expand">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>
-      ))}
+      </div>
+      <p class="viewer-hint">Drag to rotate · Scroll to zoom</p>
     </div>
   )}
 </div>
 
 <script>
+  // Photo thumbnails
   const mainImg = document.getElementById('gallery-main-img') as HTMLImageElement | null;
   document.querySelectorAll<HTMLButtonElement>('.thumb').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -43,17 +81,72 @@ const gallery = images.length > 0 ? images : [image];
       btn.classList.add('active');
     });
   });
+
+  // Toggle Photos / 3D
+  const btnPhotos = document.getElementById('btn-photos');
+  const btn3d = document.getElementById('btn-3d');
+  const viewPhotos = document.getElementById('view-photos');
+  const view3d = document.getElementById('view-3d');
+
+  if (btnPhotos && btn3d && viewPhotos && view3d) {
+    btnPhotos.addEventListener('click', () => {
+      viewPhotos.style.display = '';
+      view3d.style.display = 'none';
+      btnPhotos.classList.add('active');
+      btn3d.classList.remove('active');
+    });
+    btn3d.addEventListener('click', () => {
+      viewPhotos.style.display = 'none';
+      view3d.style.display = '';
+      btnPhotos.classList.remove('active');
+      btn3d.classList.add('active');
+    });
+  }
+
+  // Expand / fullscreen 3D viewer
+  const expandBtn = document.getElementById('expand-btn');
+  const viewerWrap = document.getElementById('viewer-wrap');
+  expandBtn?.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      viewerWrap?.requestFullscreen();
+      expandBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M14 10v4h-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    } else {
+      document.exitFullscreen();
+    }
+  });
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement && expandBtn) {
+      expandBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    }
+  });
 </script>
 
 <style>
+  .view-toggle {
+    display: flex; gap: 4px; margin-bottom: 10px;
+  }
+  .toggle-btn {
+    padding: 6px 16px; border-radius: var(--r);
+    border: 1.5px solid var(--border);
+    background: transparent; color: var(--t3);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .toggle-btn:hover { border-color: var(--t3); color: var(--t2); }
+  .toggle-btn.active {
+    border-color: var(--accent); color: var(--accent);
+    background: var(--accent-t);
+  }
+
   .gallery-main {
-    background: var(--bg-2);
+    background: #f0f3f7;
     border: 1px solid var(--border);
     border-radius: var(--r-lg);
     overflow: hidden;
+    height: min(72vh, 660px);
   }
   .gallery-main img {
-    width: 100%; aspect-ratio: 1;
+    width: 100%; height: 100%;
     object-fit: contain; object-position: center;
     padding: 32px;
   }
@@ -72,4 +165,34 @@ const gallery = images.length > 0 ? images : [image];
   .thumb img { width: 100%; height: 100%; object-fit: contain; }
   .thumb:hover { border-color: var(--t3); }
   .thumb.active { border-color: var(--accent); }
+
+  .viewer-wrap {
+    height: min(72vh, 660px);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--bg-2);
+    position: relative;
+  }
+  .viewer-wrap:fullscreen {
+    aspect-ratio: unset;
+    width: 100vw; height: 100vh;
+    border-radius: 0;
+  }
+  .expand-btn {
+    position: absolute; top: 10px; right: 10px;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(6,13,31,0.7);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--t2); cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    backdrop-filter: blur(4px);
+  }
+  .expand-btn:hover { background: var(--bg-card); color: var(--t1); }
+  .viewer-hint {
+    text-align: center; font-size: 12px;
+    color: var(--t3); margin-top: 8px;
+  }
 </style>

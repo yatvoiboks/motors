@@ -15,8 +15,6 @@ const currentPath = Astro.url.pathname;
       <li><a href="/contact" class={`nav-link ${currentPath === '/contact' ? 'active' : ''}`}>Contact</a></li>
     </ul>
 
-    <a href="/contact" class="btn btn-primary btn-sm nav-cta">Request Quote</a>
-
     <button class="burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -42,23 +40,30 @@ const currentPath = Astro.url.pathname;
     border-bottom: 1px solid var(--border);
   }
   .nav-inner {
-    height: 60px;
-    display: flex; align-items: center; gap: 32px;
+    height: 68px;
+    display: flex; align-items: center; gap: 8px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 24px;
   }
   .nav-logo {
     font-size: 16px; font-weight: 800; letter-spacing: -0.01em;
     color: var(--t1); text-decoration: none; flex-shrink: 0;
+    margin-right: 16px;
   }
   .la { color: var(--accent); }
 
   .nav-links {
-    display: flex; gap: 24px; list-style: none; flex: 1;
+    display: flex; gap: 4px; list-style: none;
   }
   .nav-link {
-    font-size: 13px; color: var(--t2); text-decoration: none;
-    font-weight: 500; transition: color 0.15s;
+    display: block;
+    font-size: 15px; color: var(--t2); text-decoration: none;
+    font-weight: 500; padding: 8px 16px; border-radius: var(--r);
+    transition: color 0.15s, background 0.15s;
   }
-  .nav-link:hover, .nav-link.active { color: var(--t1); }
+  .nav-link:hover { color: var(--t1); background: rgba(255,255,255,0.05); }
+  .nav-link.active { color: var(--t1); background: rgba(255,255,255,0.07); }
 
   .burger {
     display: none; flex-direction: column; gap: 5px;
@@ -74,16 +79,15 @@ const currentPath = Astro.url.pathname;
 
   @media (max-width: 640px) {
     .burger  { display: flex; }
-    .nav-cta { display: none; }
     .nav-links {
       display: none; position: absolute;
-      top: 60px; left: 0; right: 0;
+      top: 68px; left: 0; right: 0;
       flex-direction: column; gap: 0;
       background: var(--bg-2);
       border-bottom: 1px solid var(--border);
       padding: 8px 0;
     }
     .nav-links.open { display: flex; }
-    .nav-link { display: block; padding: 10px 24px; }
+    .nav-link { border-radius: 0; padding: 12px 24px; }
   }
 </style>
