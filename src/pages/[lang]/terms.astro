@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { languages, type Lang } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return (Object.keys(languages) as Lang[]).map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+
+const content: Record<Lang, { title: string; updated: string; p: string[] }> = {
+  en: {
+    title: 'Terms of Use',
+    updated: 'Last updated: June 2026',
+    p: [
+      'This website is a product catalog for informational purposes. By using this website, you agree to these terms. All product information is subject to change. We make no warranties regarding accuracy of product specifications. Contact us for current availability.',
+      'This catalog is intended for B2B customers. Use of product images and descriptions without permission is prohibited. All content is property of GlobalRobotex.',
+    ],
+  },
+  uk: {
+    title: 'Умови використання',
+    updated: 'Останнє оновлення: червень 2026',
+    p: [
+      'Цей сайт є каталогом продукції для інформаційних цілей. Користуючись сайтом, ви погоджуєтеся з цими умовами. Уся інформація про вироби може змінюватися. Ми не надаємо гарантій щодо точності характеристик. Звертайтеся до нас для уточнення наявності.',
+      'Каталог призначений для B2B-клієнтів. Використання зображень та описів виробів без дозволу заборонено. Увесь контент є власністю GlobalRobotex.',
+    ],
+  },
+};
+const c = content[lang];
+---
+
+<BaseLayout lang={lang} title={`${c.title} | GlobalRobotex`} description={c.title} noindex={true}>
+  <Navbar lang={lang} />
+  <main class="legal">
+    <div class="container narrow">
+      <h1>{c.title}</h1>
+      <p class="muted">{c.updated}</p>
+      {c.p.map((para) => <p>{para}</p>)}
+    </div>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
+
+<style>
+  .legal { padding: 64px 0; }
+  .narrow { max-width: 760px; }
+  .legal h1 { font-size: 32px; margin-bottom: 16px; }
+  .legal p { color: var(--t2); line-height: 1.8; margin-bottom: 16px; }
+  .legal .muted { color: var(--t3); font-size: 14px; }
+</style>

@@ -1,11 +1,15 @@
 ---
+import { useTranslations, defaultLang, type Lang } from '../i18n/ui';
+
 interface Props {
   name: string;
   image: string;
   images?: string[];
   model3d?: string;
+  lang?: Lang;
 }
-const { name, image, images = [], model3d } = Astro.props;
+const { name, image, images = [], model3d, lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
 const gallery = images.length > 0 ? images : [image];
 ---
 
@@ -16,8 +20,8 @@ const gallery = images.length > 0 ? images : [image];
 <div class="gallery">
   {model3d && (
     <div class="view-toggle">
-      <button type="button" class="toggle-btn active" id="btn-photos">Photos</button>
-      <button type="button" class="toggle-btn" id="btn-3d">3D Model</button>
+      <button type="button" class="toggle-btn active" id="btn-photos">{t('gallery.photos')}</button>
+      <button type="button" class="toggle-btn" id="btn-3d">{t('gallery.3d')}</button>
     </div>
   )}
 
@@ -66,7 +70,7 @@ const gallery = images.length > 0 ? images : [image];
           </svg>
         </button>
       </div>
-      <p class="viewer-hint">Drag to rotate · Scroll to zoom</p>
+      <p class="viewer-hint">{t('gallery.hint')}</p>
     </div>
   )}
 </div>

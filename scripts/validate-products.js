@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Validates products.json before build.
- * Ensures all required fields exist for each product.
+ * Validates the bilingual products.json before build.
+ * Each localizable field is an object { en, uk }.
  * Run: node scripts/validate-products.js
  * Exit code: 0 = valid, 1 = invalid
  */
@@ -11,19 +11,24 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 const REQUIRED_FIELDS = ['id', 'name', 'category', 'image', 'description', 'specs'];
-const ALLOWED_CATEGORIES = ['motors', 'propellers', 'escs', 'vtol', 'fixed-wing', 'systems'];
-
+const LANGS = ['en', 'uk'];
 let hasErrors = false;
 
-function validate() {
-  const dataPath = resolve(process.cwd(), 'src/data/products.json');
-  let products;
+function loadJSON(path) {
+  return JSON.parse(readFileSync(resolve(process.cwd(), path), 'utf-8'));
+}
 
+function isLangObject(v) {
+  return v && typeof v === 'object' && !Array.isArray(v) && LANGS.every((l) => l in v);
+}
+
+function validate() {
+  let products, categories;
   try {
-    const raw = readFileSync(dataPath, 'utf-8');
-    products = JSON.parse(raw);
+    products = loadJSON('src/data/products.json');
+    categories = loadJSON('src/data/categories.json');
   } catch (err) {
-    console.error('❌ Failed to read products.json:', err.message);
+    console.error('❌ Failed to read data files:', err.message);
     process.exit(1);
   }
 
@@ -32,10 +37,11 @@ function validate() {
     process.exit(1);
   }
 
+  const allowedCategories = categories.map((c) => c.id).filter((id) => id !== 'all');
+
   products.forEach((product, index) => {
     const prefix = `Product #${index + 1} (id: ${product.id || 'unknown'})`;
 
-    // Check required fields
     for (const field of REQUIRED_FIELDS) {
       if (!(field in product)) {
         console.error(`❌ ${prefix}: Missing required field "${field}"`);
@@ -43,30 +49,33 @@ function validate() {
       }
     }
 
-    // Validate specs is object with at least one entry
-    if (product.specs !== undefined) {
-      if (typeof product.specs !== 'object' || product.specs === null || Array.isArray(product.specs)) {
-        console.error(`❌ ${prefix}: "specs" must be an object`);
-        hasErrors = true;
-      } else if (Object.keys(product.specs).length === 0) {
-        console.error(`❌ ${prefix}: "specs" must have at least one key-value pair`);
+    // Bilingual fields must carry both languages
+    for (const field of ['name', 'description', 'specs']) {
+      if (product[field] !== undefined && !isLangObject(product[field])) {
+        console.error(`❌ ${prefix}: "${field}" must be an object with keys ${LANGS.join(', ')}`);
         hasErrors = true;
       }
     }
 
-    // Validate category
-    if (product.category && !ALLOWED_CATEGORIES.includes(product.category)) {
-      console.error(`❌ ${prefix}: Invalid category "${product.category}". Allowed: ${ALLOWED_CATEGORIES.join(', ')}`);
+    // specs.<lang> must be a non-empty object
+    if (isLangObject(product.specs)) {
+      for (const l of LANGS) {
+        const s = product.specs[l];
+        if (typeof s !== 'object' || s === null || Array.isArray(s) || Object.keys(s).length === 0) {
+          console.error(`❌ ${prefix}: "specs.${l}" must have at least one key-value pair`);
+          hasErrors = true;
+        }
+      }
+    }
+
+    if (product.category && !allowedCategories.includes(product.category)) {
+      console.error(`❌ ${prefix}: Invalid category "${product.category}". Allowed: ${allowedCategories.join(', ')}`);
       hasErrors = true;
     }
 
-    // Validate images array if present
     if (product.images !== undefined) {
-      if (!Array.isArray(product.images)) {
-        console.error(`❌ ${prefix}: "images" must be an array`);
-        hasErrors = true;
-      } else if (product.images.some((img) => typeof img !== 'string')) {
-        console.error(`❌ ${prefix}: "images" array must contain only strings (paths)`);
+      if (!Array.isArray(product.images) || product.images.some((img) => typeof img !== 'string')) {
+        console.error(`❌ ${prefix}: "images" must be an array of strings`);
         hasErrors = true;
       }
     }
@@ -77,7 +86,7 @@ function validate() {
     process.exit(1);
   }
 
-  console.log(`✓ products.json is valid (${products.length} products)`);
+  console.log(`✓ products.json is valid (${products.length} products, ${allowedCategories.length} categories)`);
 }
 
 validate();

@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { languages, type Lang } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return (Object.keys(languages) as Lang[]).map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+
+const content: Record<Lang, { title: string; updated: string; p: string[] }> = {
+  en: {
+    title: 'Privacy Policy',
+    updated: 'Last updated: June 2026',
+    p: [
+      'This is a static catalog website. We do not collect personal data through this site. When you contact us via email, we use your contact information only to respond to your inquiry. We do not share your information with third parties.',
+      'Our hosting provider may collect standard server logs including IP address and access times. This data is used for security and analytics purposes only.',
+    ],
+  },
+  uk: {
+    title: 'Політика конфіденційності',
+    updated: 'Останнє оновлення: червень 2026',
+    p: [
+      'Це статичний сайт-каталог. Ми не збираємо персональні дані через цей сайт. Коли ви звертаєтеся до нас електронною поштою, ми використовуємо ваші контактні дані лише для відповіді на запит. Ми не передаємо вашу інформацію третім сторонам.',
+      'Наш хостинг-провайдер може збирати стандартні серверні логи, зокрема IP-адресу та час доступу. Ці дані використовуються виключно для безпеки та аналітики.',
+    ],
+  },
+};
+const c = content[lang];
+---
+
+<BaseLayout lang={lang} title={`${c.title} | GlobalRobotex`} description={c.title} noindex={true}>
+  <Navbar lang={lang} />
+  <main class="legal">
+    <div class="container narrow">
+      <h1>{c.title}</h1>
+      <p class="muted">{c.updated}</p>
+      {c.p.map((para) => <p>{para}</p>)}
+    </div>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
+
+<style>
+  .legal { padding: 64px 0; }
+  .narrow { max-width: 760px; }
+  .legal h1 { font-size: 32px; margin-bottom: 16px; }
+  .legal p { color: var(--t2); line-height: 1.8; margin-bottom: 16px; }
+  .legal .muted { color: var(--t3); font-size: 14px; }
+</style>

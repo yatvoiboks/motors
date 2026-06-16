@@ -1,22 +1,27 @@
 ---
+import { useTranslations, localizePath, defaultLang, type Lang } from '../i18n/ui';
+
 interface Props {
   title: string;
   subtitle?: string;
   label?: string;
   cta?: boolean;
+  lang?: Lang;
 }
-const { title, subtitle, label = 'Industrial UAV Components', cta = false } = Astro.props;
+const { title, subtitle, label, cta = false, lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const resolvedLabel = label ?? t('home.label');
 ---
 
 <section class="hero">
   <div class="container">
-    <div class="section-label">{label}</div>
+    <div class="section-label">{resolvedLabel}</div>
     <h1 set:html={title} />
     {subtitle && <p class="sub">{subtitle}</p>}
     {cta && (
       <div class="actions">
-        <a href="/catalog" class="btn btn-primary">View Catalog</a>
-        <a href="/contact" class="btn btn-outline">Request Quote</a>
+        <a href={localizePath('/catalog', lang)} class="btn btn-primary">{t('common.viewCatalog')}</a>
+        <a href={localizePath('/contact', lang)} class="btn btn-outline">{t('common.requestQuote')}</a>
       </div>
     )}
   </div>

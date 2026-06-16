@@ -1,189 +1,3524 @@
 [
   {
-    "id": "tmotor-f90",
-    "name": "TMotor F90 Motor",
-    "category": "motors",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "High-performance motor for racing and freestyle applications. Precision-wound stator, optimal power-to-weight ratio.",
-    "specs": {
-      "KV": "1950 KV",
-      "Weight": "33 g",
-      "Voltage": "6S",
-      "Stator": "22×06 mm"
+    "id": "titan",
+    "category": "ground",
+    "image": "/products/titan.jpg",
+    "images": [
+      "/products/titan.jpg"
+    ],
+    "name": {
+      "en": "TITAN",
+      "uk": "TITAN"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
-      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
-    ]
+    "tag": {
+      "en": "TITAN Series — Recovery",
+      "uk": "Серія ТИТАН — евакуатор"
+    },
+    "description": {
+      "en": "Unmanned ground robotic system — an autonomous or remotely operated vehicle for recovery and evacuation of equipment and UGVs up to 1000 kg on the line of contact and in grey zones. 700 kg manipulator, airless wheels, 360° camera coverage.",
+      "uk": "Безпілотний наземний роботизований комплекс — автономний або дистанційно керований апарат для евакуації техніки та НБК вагою до 1000 кг на лінії бойового зіткнення та в сірих зонах. Маніпулятор до 700 кг, безповітряні колеса, круговий відеоогляд."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "Recovery",
+          "primary": true
+        },
+        {
+          "text": "up to 1000 kg",
+          "primary": true
+        },
+        {
+          "text": "STARLINK",
+          "primary": false
+        },
+        {
+          "text": "FHSS 430 MHz",
+          "primary": false
+        },
+        {
+          "text": "700 kg Manipulator",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "Евакуаційний",
+          "primary": true
+        },
+        {
+          "text": "до 1000 кг",
+          "primary": true
+        },
+        {
+          "text": "STARLINK",
+          "primary": false
+        },
+        {
+          "text": "ППРЧ 430 МГц",
+          "primary": false
+        },
+        {
+          "text": "Маніпулятор 700 кг",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "1000",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "700",
+          "unit": "kg",
+          "label": "Manipulator"
+        },
+        {
+          "value": "240",
+          "unit": "min",
+          "label": "Runtime"
+        },
+        {
+          "value": "15",
+          "unit": "km/h",
+          "label": "Speed"
+        },
+        {
+          "value": "20",
+          "unit": "km",
+          "label": "Link Range"
+        }
+      ],
+      "uk": [
+        {
+          "value": "1000",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "700",
+          "unit": "кг",
+          "label": "Маніпулятор"
+        },
+        {
+          "value": "240",
+          "unit": "хв",
+          "label": "Час роботи"
+        },
+        {
+          "value": "15",
+          "unit": "км/год",
+          "label": "Швидкість"
+        },
+        {
+          "value": "20",
+          "unit": "км",
+          "label": "Дальність зв'язку"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "1000 kg",
+        "Manipulator": "700 kg",
+        "Runtime": "240 min",
+        "Speed": "15 km/h",
+        "Link Range": "20 km"
+      },
+      "uk": {
+        "Вантажопідйомність": "1000 кг",
+        "Маніпулятор": "700 кг",
+        "Час роботи": "240 хв",
+        "Швидкість": "15 км/год",
+        "Дальність зв'язку": "20 км"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size (L×W×H)",
+              "v": "1950 × 1900 × 660 mm"
+            },
+            {
+              "k": "Payload capacity",
+              "v": "1000 kg"
+            },
+            {
+              "k": "Manipulator",
+              "v": "up to 700 kg"
+            },
+            {
+              "k": "Wheels",
+              "v": "airless, multi-width"
+            },
+            {
+              "k": "Sides",
+              "v": "drop-to-ground loading"
+            },
+            {
+              "k": "Role",
+              "v": "vehicle & UGV recovery"
+            }
+          ]
+        },
+        {
+          "title": "Drive & Power",
+          "rows": [
+            {
+              "k": "Drive",
+              "v": "geared motor + ESC"
+            },
+            {
+              "k": "ESC generation",
+              "v": "next-gen, in-house"
+            },
+            {
+              "k": "Travel speed",
+              "v": "15 km/h"
+            },
+            {
+              "k": "Runtime",
+              "v": "240 min (4 batteries)"
+            },
+            {
+              "k": "Batteries",
+              "v": "4 × pack"
+            },
+            {
+              "k": "Charging",
+              "v": "hybrid 240/400 V / generator"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "FHSS 430 MHz (720/865/915)"
+            },
+            {
+              "k": "LOC channel",
+              "v": "STARLINK (or any)"
+            },
+            {
+              "k": "Range (radio)",
+              "v": "up to 20 km"
+            },
+            {
+              "k": "Control",
+              "v": "radio handset"
+            },
+            {
+              "k": "Station",
+              "v": "mobile, remote antennas"
+            }
+          ]
+        },
+        {
+          "title": "Cameras & Options",
+          "rows": [
+            {
+              "k": "Drive cameras",
+              "v": "4 units"
+            },
+            {
+              "k": "Pan cameras",
+              "v": "2 units (lower view)"
+            },
+            {
+              "k": "Control tablet",
+              "v": "rugged + app"
+            },
+            {
+              "k": "Carrier-drone mode",
+              "v": "yes"
+            },
+            {
+              "k": "Mounts",
+              "v": "custom"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази (Д×Ш×В)",
+              "v": "1950 × 1900 × 660 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "1000 кг"
+            },
+            {
+              "k": "Маніпулятор",
+              "v": "до 700 кг"
+            },
+            {
+              "k": "Колеса",
+              "v": "безповітряні, різношірокі"
+            },
+            {
+              "k": "Борти",
+              "v": "опускання до підлоги"
+            },
+            {
+              "k": "Призначення",
+              "v": "евакуація НБК та техніки"
+            }
+          ]
+        },
+        {
+          "title": "Двигун та живлення",
+          "rows": [
+            {
+              "k": "Двигун",
+              "v": "мотор-редуктор + ЄСК"
+            },
+            {
+              "k": "Покоління ЄСК",
+              "v": "нове, власне вироб."
+            },
+            {
+              "k": "Швидкість руху",
+              "v": "15 км/год"
+            },
+            {
+              "k": "Час роботи",
+              "v": "240 хв (4 АКБ)"
+            },
+            {
+              "k": "Акумулятори",
+              "v": "4 × АКБ"
+            },
+            {
+              "k": "Зарядка",
+              "v": "гібридна 240/400 В / генератор"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "ППРЧ 430 МГц (720/865/915)"
+            },
+            {
+              "k": "Канал ЛБЗ",
+              "v": "STARLINK (або інший)"
+            },
+            {
+              "k": "Дальність (радіо)",
+              "v": "до 20 км"
+            },
+            {
+              "k": "Управління",
+              "v": "радіопульт"
+            },
+            {
+              "k": "Станція",
+              "v": "мобільна, виносні антени"
+            }
+          ]
+        },
+        {
+          "title": "Камери та опції",
+          "rows": [
+            {
+              "k": "Маршові камери",
+              "v": "4 шт"
+            },
+            {
+              "k": "Поворотні камери",
+              "v": "2 шт (нижній огляд)"
+            },
+            {
+              "k": "Планшет керування",
+              "v": "захищений + додаток"
+            },
+            {
+              "k": "Режим дрон-носія",
+              "v": "так"
+            },
+            {
+              "k": "Кріплення",
+              "v": "під замовлення"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "4 × battery packs + hybrid charging station",
+        "Rugged control tablet with proprietary app",
+        "Mobile station with remote antennas",
+        "Radio handset for drive control",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "4 × АКБ + зарядна станція гібридного типу",
+        "Захищений планшет з власним додатком керування",
+        "Мобільна станція з виносними антенами",
+        "Радіопульт маршового управління",
+        "Комплект кріплень (під замовлення)"
+      ]
+    },
+    "model3d": "/models/titan.glb"
   },
   {
-    "id": "tmotor-u8-lite",
-    "name": "U8 Lite L Efficiency Motor",
-    "category": "motors",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "Efficiency-type UAV motor for long-endurance multirotor platforms. KV110, 196g, max current 40A. Designed for 6–12S voltage.",
-    "specs": {
-      "KV": "110 KV",
-      "Weight": "196 g",
-      "Max Current": "40 A",
-      "Voltage": "6–12S",
-      "Stator": "100×22 mm"
+    "id": "surprise",
+    "category": "ground",
+    "image": "/products/surprise.jpg",
+    "images": [
+      "/products/surprise.jpg"
+    ],
+    "name": {
+      "en": "SURPRISE",
+      "uk": "SURPRISE"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
-      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" },
-      { "label": "CAD Model (DXF)",     "key": "model.dxf",        "type": "cad" }
-    ]
+    "tag": {
+      "en": "SURPRISE Series — Logistics",
+      "uk": "Серія SURPRISE — логістика"
+    },
+    "description": {
+      "en": "Unmanned ground robotic system — an autonomous or remotely operated vehicle for cargo logistics up to 400 kg on the line of contact and in grey zones. IP68 protection, skid-steer drive, 360° camera coverage.",
+      "uk": "Безпілотний наземний роботизований комплекс — автономний або дистанційно керований апарат для логістики вантажів вагою до 400 кг на лінії бойового зіткнення та в сірих зонах. Захист IP68, бортовий поворот (Skid-Steer), круговий відеоогляд."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "Logistics",
+          "primary": true
+        },
+        {
+          "text": "up to 400 kg",
+          "primary": true
+        },
+        {
+          "text": "IP68",
+          "primary": false
+        },
+        {
+          "text": "STARLINK Mini",
+          "primary": false
+        },
+        {
+          "text": "Skid-Steer",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "Логістичний",
+          "primary": true
+        },
+        {
+          "text": "до 400 кг",
+          "primary": true
+        },
+        {
+          "text": "IP68",
+          "primary": false
+        },
+        {
+          "text": "STARLINK Mini",
+          "primary": false
+        },
+        {
+          "text": "Skid-Steer",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "400",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "240",
+          "unit": "min",
+          "label": "Runtime"
+        },
+        {
+          "value": "15",
+          "unit": "km/h",
+          "label": "Speed"
+        },
+        {
+          "value": "20",
+          "unit": "km",
+          "label": "Link Range"
+        },
+        {
+          "value": "6",
+          "unit": "units",
+          "label": "Cameras"
+        }
+      ],
+      "uk": [
+        {
+          "value": "400",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "240",
+          "unit": "хв",
+          "label": "Час роботи"
+        },
+        {
+          "value": "15",
+          "unit": "км/год",
+          "label": "Швидкість"
+        },
+        {
+          "value": "20",
+          "unit": "км",
+          "label": "Дальність зв'язку"
+        },
+        {
+          "value": "6",
+          "unit": "шт",
+          "label": "Камери"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "400 kg",
+        "Runtime": "240 min",
+        "Speed": "15 km/h",
+        "Link Range": "20 km",
+        "Cameras": "6 units"
+      },
+      "uk": {
+        "Вантажопідйомність": "400 кг",
+        "Час роботи": "240 хв",
+        "Швидкість": "15 км/год",
+        "Дальність зв'язку": "20 км",
+        "Камери": "6 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size (L×W×H)",
+              "v": "1950 × 1920 × 660 mm"
+            },
+            {
+              "k": "Height (raised)",
+              "v": "up to 1460 mm"
+            },
+            {
+              "k": "Payload capacity",
+              "v": "400 kg"
+            },
+            {
+              "k": "Protection",
+              "v": "IP68 (body + battery)"
+            },
+            {
+              "k": "Drive",
+              "v": "skid-steer"
+            },
+            {
+              "k": "Role",
+              "v": "cargo logistics"
+            }
+          ]
+        },
+        {
+          "title": "Drive & Power",
+          "rows": [
+            {
+              "k": "Drive",
+              "v": "geared motor + ESC"
+            },
+            {
+              "k": "Cooling",
+              "v": "optional liquid"
+            },
+            {
+              "k": "Travel speed",
+              "v": "15 km/h"
+            },
+            {
+              "k": "Runtime",
+              "v": "240 min (4 batteries)"
+            },
+            {
+              "k": "Batteries",
+              "v": "4 × pack"
+            },
+            {
+              "k": "Charging",
+              "v": "hybrid 240/400 V / generator"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Control",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "FHSS 430 MHz"
+            },
+            {
+              "k": "LOC channel",
+              "v": "STARLINK Mini"
+            },
+            {
+              "k": "Range (radio)",
+              "v": "up to 20 km"
+            },
+            {
+              "k": "Autopilot",
+              "v": "Cube Orange (ArduROVER)"
+            },
+            {
+              "k": "Companion computer",
+              "v": "Raspberry Pi 5"
+            }
+          ]
+        },
+        {
+          "title": "Cameras & Options",
+          "rows": [
+            {
+              "k": "Drive cameras",
+              "v": "4 units"
+            },
+            {
+              "k": "Pan cameras",
+              "v": "2 units (under wheels)"
+            },
+            {
+              "k": "Control tablet",
+              "v": "rugged + app"
+            },
+            {
+              "k": "Modes",
+              "v": "carrier / relay / recovery"
+            },
+            {
+              "k": "Mounts",
+              "v": "custom"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази (Д×Ш×В)",
+              "v": "1950 × 1920 × 660 мм"
+            },
+            {
+              "k": "Висота з підйомом",
+              "v": "до 1460 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "400 кг"
+            },
+            {
+              "k": "Захист",
+              "v": "IP68 (корпус + АКБ)"
+            },
+            {
+              "k": "Привод",
+              "v": "Skid-Steer (бортовий поворот)"
+            },
+            {
+              "k": "Призначення",
+              "v": "логістика вантажів"
+            }
+          ]
+        },
+        {
+          "title": "Двигун та живлення",
+          "rows": [
+            {
+              "k": "Двигун",
+              "v": "мотор-редуктор + ЄСК"
+            },
+            {
+              "k": "Охолодження",
+              "v": "опц. водяне"
+            },
+            {
+              "k": "Швидкість руху",
+              "v": "15 км/год"
+            },
+            {
+              "k": "Час роботи",
+              "v": "240 хв (4 АКБ)"
+            },
+            {
+              "k": "Акумулятори",
+              "v": "4 × АКБ"
+            },
+            {
+              "k": "Зарядка",
+              "v": "гібридна 240/400 В / генератор"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та керування",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "ППРЧ 430 МГц"
+            },
+            {
+              "k": "Канал ЛБЗ",
+              "v": "STARLINK Mini"
+            },
+            {
+              "k": "Дальність (радіо)",
+              "v": "до 20 км"
+            },
+            {
+              "k": "Автопілот",
+              "v": "Cube Orange (ArduROVER)"
+            },
+            {
+              "k": "Бортовий комп'ютер",
+              "v": "Raspberry Pi 5"
+            }
+          ]
+        },
+        {
+          "title": "Камери та опції",
+          "rows": [
+            {
+              "k": "Маршові камери",
+              "v": "4 шт"
+            },
+            {
+              "k": "Поворотні камери",
+              "v": "2 шт (під колеса)"
+            },
+            {
+              "k": "Планшет керування",
+              "v": "захищений + додаток"
+            },
+            {
+              "k": "Режими",
+              "v": "носій / ретранслятор / евакуатор"
+            },
+            {
+              "k": "Кріплення",
+              "v": "під замовлення"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "4 × battery packs + hybrid charging station",
+        "Rugged control tablet with proprietary app",
+        "Mobile station with remote antennas",
+        "STARLINK Mini terminal",
+        "Radio handset for drive control"
+      ],
+      "uk": [
+        "4 × АКБ + зарядна станція гібридного типу",
+        "Захищений планшет з власним додатком керування",
+        "Мобільна станція з виносними антенами",
+        "Термінал STARLINK Mini",
+        "Радіопульт маршового управління"
+      ]
+    },
+    "model3d": "/models/titan.glb"
   },
   {
-    "id": "tmotor-u7-v2",
-    "name": "U7 V2.0 Power Type Motor",
-    "category": "motors",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "High-power UAV motor for demanding industrial applications. Built for reliability and consistent performance under load.",
-    "specs": {
-      "KV": "490 KV",
-      "Weight": "285 g",
-      "Voltage": "6S",
-      "Stator": "90×25 mm"
+    "id": "nrk-1500",
+    "category": "ground",
+    "image": "/products/nrk1500.jpg",
+    "images": [
+      "/products/nrk1500.jpg"
+    ],
+    "name": {
+      "en": "НРК 1500",
+      "uk": "НРК 1500"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
-      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
-    ]
+    "tag": {
+      "en": "UGV 1500 / 6×200",
+      "uk": "НРК 1500 / 6×200"
+    },
+    "description": {
+      "en": "Six-wheel ground platform with skid-steer control and 200 kg payload. Sprung suspension, Mayhem ITP tires, mounts for robotic arms, manipulators and a casualty-evacuation system.",
+      "uk": "Шестиколісна наземна платформа танкового керування з вантажопідйомністю 200 кг. Пружна підвіска, шини Mayhem ITP, кріплення під роборуки, маніпулятори та систему евакуації поранених."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "200 kg",
+          "primary": true
+        },
+        {
+          "text": "6×6",
+          "primary": true
+        },
+        {
+          "text": "4G LINK",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Skid-Steer",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "200 кг",
+          "primary": true
+        },
+        {
+          "text": "6×6",
+          "primary": true
+        },
+        {
+          "text": "4G LINK",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Танкове керування",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "200",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "180",
+          "unit": "min",
+          "label": "Runtime"
+        },
+        {
+          "value": "10",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "18",
+          "unit": "km",
+          "label": "With Repeater"
+        },
+        {
+          "value": "2",
+          "unit": "pcs",
+          "label": "Batteries"
+        }
+      ],
+      "uk": [
+        {
+          "value": "200",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "180",
+          "unit": "хв",
+          "label": "Час роботи"
+        },
+        {
+          "value": "10",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "18",
+          "unit": "км",
+          "label": "З ретранслятором"
+        },
+        {
+          "value": "2",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "200 kg",
+        "Runtime": "180 min",
+        "Range": "10 km",
+        "With Repeater": "18 km",
+        "Batteries": "2 pcs"
+      },
+      "uk": {
+        "Вантажопідйомність": "200 кг",
+        "Час роботи": "180 хв",
+        "Дальність": "10 км",
+        "З ретранслятором": "18 км",
+        "АКБ": "2 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "1200 × 1500 × 700 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "200 kg"
+            },
+            {
+              "k": "Wheelbase",
+              "v": "6×6, skid-steer"
+            },
+            {
+              "k": "Suspension",
+              "v": "sprung"
+            },
+            {
+              "k": "Tires",
+              "v": "Mayhem ITP AT 26×11-12"
+            }
+          ]
+        },
+        {
+          "title": "Power",
+          "rows": [
+            {
+              "k": "Batteries",
+              "v": "2 pcs"
+            },
+            {
+              "k": "Charging station",
+              "v": "1 pc"
+            },
+            {
+              "k": "Runtime",
+              "v": "120–180 min"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "430 MHz (720/865/915)"
+            },
+            {
+              "k": "Channel",
+              "v": "4G LINK, remote access"
+            },
+            {
+              "k": "Navigation",
+              "v": "GNSS dual-stream, RTK"
+            },
+            {
+              "k": "Range",
+              "v": "up to 10 km (18 w/ repeater)"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Mounts",
+              "v": "robotic arms, manipulators"
+            },
+            {
+              "k": "Wheels",
+              "v": "steel / track system"
+            },
+            {
+              "k": "Evacuation",
+              "v": "casualty-evac system"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "1200 × 1500 × 700 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "200 кг"
+            },
+            {
+              "k": "Колісна база",
+              "v": "6×6, танкове керування"
+            },
+            {
+              "k": "Підвіска",
+              "v": "пружна"
+            },
+            {
+              "k": "Шини",
+              "v": "Mayhem ITP AT 26×11-12"
+            }
+          ]
+        },
+        {
+          "title": "Живлення",
+          "rows": [
+            {
+              "k": "Акумулятори",
+              "v": "2 шт"
+            },
+            {
+              "k": "Зарядна станція",
+              "v": "1 шт"
+            },
+            {
+              "k": "Час роботи",
+              "v": "120–180 хв"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "430 МГц (720/865/915)"
+            },
+            {
+              "k": "Канал",
+              "v": "4G LINK, віддалений доступ"
+            },
+            {
+              "k": "Навігація",
+              "v": "GNSS двопоточна, RTK"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 10 км (18 з ретр.)"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Кріплення",
+              "v": "роборуки, маніпулятори"
+            },
+            {
+              "k": "Колеса",
+              "v": "залізні / тракова система"
+            },
+            {
+              "k": "Евакуація",
+              "v": "система евакуації поранених"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "2 × batteries + charging station",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "2 × АКБ + зарядна станція",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    }
   },
   {
-    "id": "ns17-props",
-    "name": "NS17×5.8 Carbon Propellers",
-    "category": "propellers",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "model3d": "/models/drone-assembled.glb",
-    "description": "Ultra-light carbon fibre folding propellers. Balanced to <0.1 g·cm. Optimal efficiency for long-endurance platforms.",
-    "specs": {
-      "Diameter": "17 in",
-      "Pitch": "5.8 in",
-      "Material": "Carbon Fibre",
-      "Weight": "38 g / pair",
-      "Balance": "< 0.1 g·cm"
+    "id": "nrk-1000",
+    "category": "ground",
+    "image": "/products/nrk1000.jpg",
+    "images": [
+      "/products/nrk1000.jpg"
+    ],
+    "name": {
+      "en": "НРК 1000",
+      "uk": "НРК 1000"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" }
-    ]
+    "tag": {
+      "en": "UGV 1000 / 4×100",
+      "uk": "НРК 1000 / 4×100"
+    },
+    "description": {
+      "en": "Four-wheel ground platform with skid-steer control and 100 kg payload. Sprung suspension, Mayhem ITP tires, mounts for robotic arms and manipulators.",
+      "uk": "Чотириколісна наземна платформа танкового керування з вантажопідйомністю 100 кг. Пружна підвіска, шини Mayhem ITP, кріплення під роборуки та маніпулятори."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "100 kg",
+          "primary": true
+        },
+        {
+          "text": "4×4",
+          "primary": true
+        },
+        {
+          "text": "4G LINK",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Skid-Steer",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "100 кг",
+          "primary": true
+        },
+        {
+          "text": "4×4",
+          "primary": true
+        },
+        {
+          "text": "4G LINK",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Танкове керування",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "100",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "120",
+          "unit": "min",
+          "label": "Runtime"
+        },
+        {
+          "value": "10",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "18",
+          "unit": "km",
+          "label": "With Repeater"
+        },
+        {
+          "value": "2",
+          "unit": "pcs",
+          "label": "Batteries"
+        }
+      ],
+      "uk": [
+        {
+          "value": "100",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "120",
+          "unit": "хв",
+          "label": "Час роботи"
+        },
+        {
+          "value": "10",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "18",
+          "unit": "км",
+          "label": "З ретранслятором"
+        },
+        {
+          "value": "2",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "100 kg",
+        "Runtime": "120 min",
+        "Range": "10 km",
+        "With Repeater": "18 km",
+        "Batteries": "2 pcs"
+      },
+      "uk": {
+        "Вантажопідйомність": "100 кг",
+        "Час роботи": "120 хв",
+        "Дальність": "10 км",
+        "З ретранслятором": "18 км",
+        "АКБ": "2 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "750 × 1000 × 400 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "100 kg"
+            },
+            {
+              "k": "Wheelbase",
+              "v": "4×4, skid-steer"
+            },
+            {
+              "k": "Suspension",
+              "v": "sprung"
+            },
+            {
+              "k": "Tires",
+              "v": "Mayhem ITP AT 18×8-10"
+            }
+          ]
+        },
+        {
+          "title": "Power",
+          "rows": [
+            {
+              "k": "Batteries",
+              "v": "2 pcs"
+            },
+            {
+              "k": "Charging station",
+              "v": "1 pc"
+            },
+            {
+              "k": "Runtime",
+              "v": "90–120 min"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "430 MHz (720/865/915)"
+            },
+            {
+              "k": "Channel",
+              "v": "4G LINK, remote access"
+            },
+            {
+              "k": "Navigation",
+              "v": "GNSS dual-stream, RTK"
+            },
+            {
+              "k": "Range",
+              "v": "up to 10 km (18 w/ repeater)"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Mounts",
+              "v": "robotic arms, manipulators"
+            },
+            {
+              "k": "Wheels",
+              "v": "steel / track system"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "750 × 1000 × 400 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "100 кг"
+            },
+            {
+              "k": "Колісна база",
+              "v": "4×4, танкове керування"
+            },
+            {
+              "k": "Підвіска",
+              "v": "пружна"
+            },
+            {
+              "k": "Шини",
+              "v": "Mayhem ITP AT 18×8-10"
+            }
+          ]
+        },
+        {
+          "title": "Живлення",
+          "rows": [
+            {
+              "k": "Акумулятори",
+              "v": "2 шт"
+            },
+            {
+              "k": "Зарядна станція",
+              "v": "1 шт"
+            },
+            {
+              "k": "Час роботи",
+              "v": "90–120 хв"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "430 МГц (720/865/915)"
+            },
+            {
+              "k": "Канал",
+              "v": "4G LINK, віддалений доступ"
+            },
+            {
+              "k": "Навігація",
+              "v": "GNSS двопоточна, RTK"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 10 км (18 з ретр.)"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Кріплення",
+              "v": "роборуки, маніпулятори"
+            },
+            {
+              "k": "Колеса",
+              "v": "залізні / тракова система"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "2 × batteries + charging station",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "2 × АКБ + зарядна станція",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    }
   },
   {
-    "id": "p21-props",
-    "name": "P21×6.3 Agricultural Propellers",
-    "category": "propellers",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "Agricultural UAV propellers engineered for spray and mapping applications. Durable polymer construction for field conditions.",
-    "specs": {
-      "Diameter": "21 in",
-      "Pitch": "6.3 in",
-      "Material": "Polymer",
-      "Weight": "92 g / pair"
+    "id": "nrk-700",
+    "category": "ground",
+    "image": "/products/nrk700.jpg",
+    "images": [
+      "/products/nrk700.jpg"
+    ],
+    "name": {
+      "en": "НРК 700",
+      "uk": "НРК 700"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
-      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
-    ]
+    "tag": {
+      "en": "UGV 700 / 4×50",
+      "uk": "НРК 700 / 4×50"
+    },
+    "description": {
+      "en": "Compact four-wheel skid-steer platform with 50 kg payload. Fiber-optic tether option, can be used as a kamikaze drone.",
+      "uk": "Компактна чотириколісна платформа танкового керування з вантажопідйомністю 50 кг. Підключення оптоволокном, можливість використання як дрон-камікадзе."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "50 kg",
+          "primary": true
+        },
+        {
+          "text": "4×4",
+          "primary": true
+        },
+        {
+          "text": "Fiber-optic",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Kamikaze",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "50 кг",
+          "primary": true
+        },
+        {
+          "text": "4×4",
+          "primary": true
+        },
+        {
+          "text": "Оптоволокно",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Камікадзе",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "50",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "90",
+          "unit": "min",
+          "label": "Runtime"
+        },
+        {
+          "value": "10",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "18",
+          "unit": "km",
+          "label": "With Repeater"
+        },
+        {
+          "value": "1",
+          "unit": "pc",
+          "label": "Battery"
+        }
+      ],
+      "uk": [
+        {
+          "value": "50",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "90",
+          "unit": "хв",
+          "label": "Час роботи"
+        },
+        {
+          "value": "10",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "18",
+          "unit": "км",
+          "label": "З ретранслятором"
+        },
+        {
+          "value": "1",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "50 kg",
+        "Runtime": "90 min",
+        "Range": "10 km",
+        "With Repeater": "18 km",
+        "Battery": "1 pc"
+      },
+      "uk": {
+        "Вантажопідйомність": "50 кг",
+        "Час роботи": "90 хв",
+        "Дальність": "10 км",
+        "З ретранслятором": "18 км",
+        "АКБ": "1 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "450 × 700 × 250 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "50 kg"
+            },
+            {
+              "k": "Wheelbase",
+              "v": "4×4, skid-steer"
+            },
+            {
+              "k": "Tires",
+              "v": "Mayhem ITP AT 12×6-7"
+            }
+          ]
+        },
+        {
+          "title": "Power",
+          "rows": [
+            {
+              "k": "Batteries",
+              "v": "1 pc"
+            },
+            {
+              "k": "Runtime",
+              "v": "90 min"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "430 MHz (720/865/915)"
+            },
+            {
+              "k": "Wired",
+              "v": "fiber-optic"
+            },
+            {
+              "k": "Navigation",
+              "v": "GNSS dual-stream, RTK"
+            },
+            {
+              "k": "Range",
+              "v": "up to 10 km (18 w/ repeater)"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Mounts",
+              "v": "robotic arms, manipulators"
+            },
+            {
+              "k": "Wheels",
+              "v": "steel system"
+            },
+            {
+              "k": "Mode",
+              "v": "kamikaze drone"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "450 × 700 × 250 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "50 кг"
+            },
+            {
+              "k": "Колісна база",
+              "v": "4×4, танкове керування"
+            },
+            {
+              "k": "Шини",
+              "v": "Mayhem ITP AT 12×6-7"
+            }
+          ]
+        },
+        {
+          "title": "Живлення",
+          "rows": [
+            {
+              "k": "Акумулятори",
+              "v": "1 шт"
+            },
+            {
+              "k": "Час роботи",
+              "v": "90 хв"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "430 МГц (720/865/915)"
+            },
+            {
+              "k": "Дротове",
+              "v": "оптоволокно"
+            },
+            {
+              "k": "Навігація",
+              "v": "GNSS двопоточна, RTK"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 10 км (18 з ретр.)"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Кріплення",
+              "v": "роборуки, маніпулятори"
+            },
+            {
+              "k": "Колеса",
+              "v": "залізна система"
+            },
+            {
+              "k": "Режим",
+              "v": "дрон-камікадзе"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "Battery + charger",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "АКБ + зарядка",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    }
   },
   {
-    "id": "v80a-esc",
-    "name": "V80A 14S FOC ESC",
-    "category": "escs",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "High-performance FOC ESC with smooth throttle response. 80A continuous, CAN/PWM interface, over-temp protection.",
-    "specs": {
-      "Continuous": "80 A",
-      "Burst": "100 A / 10s",
-      "Voltage": "14S",
-      "Interface": "CAN · PWM",
-      "Weight": "68 g"
+    "id": "vtool-4000",
+    "category": "air",
+    "image": "/products/vtool4000.jpg",
+    "images": [
+      "/products/vtool4000.jpg"
+    ],
+    "name": {
+      "en": "VTOOL 4000",
+      "uk": "VTOOL 4000"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
-      { "label": "Pinout Diagram",      "key": "pinout.pdf",       "type": "pdf" },
-      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
-    ]
+    "tag": {
+      "en": "VTOOL 4000 / 8×70",
+      "uk": "VTOOL 4000 / 8×70"
+    },
+    "description": {
+      "en": "Aerial platform with 50 kg payload and up to 170 km/h speed. Carrier for kamikaze drones, fiber-optic tethering for loitering munitions.",
+      "uk": "Літальна платформа з вантажопідйомністю 50 кг та швидкістю до 170 км/год. Носій для дронів-камікадзе, підключення баражуючих боєприпасів оптоволокном."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "50 kg",
+          "primary": true
+        },
+        {
+          "text": "170 km/h",
+          "primary": true
+        },
+        {
+          "text": "100 km Range",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Carrier",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "50 кг",
+          "primary": true
+        },
+        {
+          "text": "170 км/год",
+          "primary": true
+        },
+        {
+          "text": "Дальність 100 км",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Носій",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "50",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "170",
+          "unit": "km/h",
+          "label": "Speed"
+        },
+        {
+          "value": "120",
+          "unit": "min",
+          "label": "Flight Time"
+        },
+        {
+          "value": "100",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "2",
+          "unit": "pcs",
+          "label": "Batteries"
+        }
+      ],
+      "uk": [
+        {
+          "value": "50",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "170",
+          "unit": "км/год",
+          "label": "Швидкість"
+        },
+        {
+          "value": "120",
+          "unit": "хв",
+          "label": "Час польоту"
+        },
+        {
+          "value": "100",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "2",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "50 kg",
+        "Speed": "170 km/h",
+        "Flight Time": "120 min",
+        "Range": "100 km",
+        "Batteries": "2 pcs"
+      },
+      "uk": {
+        "Вантажопідйомність": "50 кг",
+        "Швидкість": "170 км/год",
+        "Час польоту": "120 хв",
+        "Дальність": "100 км",
+        "АКБ": "2 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "4090 × 2100 × 750 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "50 kg"
+            },
+            {
+              "k": "Speed",
+              "v": "up to 170 km/h"
+            },
+            {
+              "k": "Flight time",
+              "v": "120 min"
+            }
+          ]
+        },
+        {
+          "title": "Power",
+          "rows": [
+            {
+              "k": "Batteries",
+              "v": "2 pcs"
+            },
+            {
+              "k": "Charging station",
+              "v": "1 pc"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "FHSS 430 MHz"
+            },
+            {
+              "k": "Range",
+              "v": "up to 100 km"
+            },
+            {
+              "k": "Navigation",
+              "v": "GNSS dual-stream, RTK"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Carries",
+              "v": "kamikaze drones"
+            },
+            {
+              "k": "Wired",
+              "v": "fiber-optic for munitions"
+            },
+            {
+              "k": "Mounts",
+              "v": "custom"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "4090 × 2100 × 750 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "50 кг"
+            },
+            {
+              "k": "Швидкість",
+              "v": "до 170 км/год"
+            },
+            {
+              "k": "Час польоту",
+              "v": "120 хв"
+            }
+          ]
+        },
+        {
+          "title": "Живлення",
+          "rows": [
+            {
+              "k": "Акумулятори",
+              "v": "2 шт"
+            },
+            {
+              "k": "Зарядна станція",
+              "v": "1 шт"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "ППРЧ 430 МГц"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 100 км"
+            },
+            {
+              "k": "Навігація",
+              "v": "GNSS двопоточна, RTK"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Переніс",
+              "v": "дрони-камікадзе"
+            },
+            {
+              "k": "Дротове",
+              "v": "оптоволокно для боєприпасів"
+            },
+            {
+              "k": "Кріплення",
+              "v": "під замовлення"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "2 × batteries + charging station",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "2 × АКБ + зарядна станція",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    }
   },
   {
-    "id": "v120a-esc",
-    "name": "V120A 14S FOC ESC",
-    "category": "escs",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "Heavy-duty FOC ESC for large UAV systems. Advanced thermal management, 120A continuous, designed for 14S platforms.",
-    "specs": {
-      "Continuous": "120 A",
-      "Burst": "160 A / 10s",
-      "Voltage": "14S",
-      "Interface": "CAN · PWM",
-      "Weight": "98 g"
+    "id": "lrk-5000",
+    "category": "air",
+    "image": "/products/lrk5000.png",
+    "images": [
+      "/products/lrk5000.png"
+    ],
+    "name": {
+      "en": "ЛРК 5000",
+      "uk": "ЛРК 5000"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
-      { "label": "Pinout Diagram",      "key": "pinout.pdf",       "type": "pdf" },
-      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
-    ]
+    "tag": {
+      "en": "ARS 5000 / 100",
+      "uk": "ЛРК 5000 / 100"
+    },
+    "description": {
+      "en": "Aerial platform with 120 kg payload and 220 km/h speed. Hybrid powertrain: up to 420 min on ICE. Interchangeable ICE / electric engines.",
+      "uk": "Літальна платформа з вантажопідйомністю 120 кг та швидкістю 220 км/год. Гібридна силова установка: до 420 хв на ДВС. Можливість зміни двигунів ДВС / електро."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "120 kg",
+          "primary": true
+        },
+        {
+          "text": "220 km/h",
+          "primary": true
+        },
+        {
+          "text": "ICE 420 min",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Kamikaze",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "120 кг",
+          "primary": true
+        },
+        {
+          "text": "220 км/год",
+          "primary": true
+        },
+        {
+          "text": "ДВС 420 хв",
+          "primary": false
+        },
+        {
+          "text": "GNSS RTK",
+          "primary": false
+        },
+        {
+          "text": "Камікадзе",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "120",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "220",
+          "unit": "km/h",
+          "label": "Speed"
+        },
+        {
+          "value": "420",
+          "unit": "min",
+          "label": "ICE Time"
+        },
+        {
+          "value": "100",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "1",
+          "unit": "pc",
+          "label": "Battery"
+        }
+      ],
+      "uk": [
+        {
+          "value": "120",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "220",
+          "unit": "км/год",
+          "label": "Швидкість"
+        },
+        {
+          "value": "420",
+          "unit": "хв",
+          "label": "Час (ДВС)"
+        },
+        {
+          "value": "100",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "1",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "120 kg",
+        "Speed": "220 km/h",
+        "ICE Time": "420 min",
+        "Range": "100 km",
+        "Battery": "1 pc"
+      },
+      "uk": {
+        "Вантажопідйомність": "120 кг",
+        "Швидкість": "220 км/год",
+        "Час (ДВС)": "420 хв",
+        "Дальність": "100 км",
+        "АКБ": "1 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "5070 × 2100 × 750 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "120 kg"
+            },
+            {
+              "k": "Speed",
+              "v": "220 km/h"
+            },
+            {
+              "k": "Flight time",
+              "v": "120 min (elec.) / 420 min (ICE)"
+            }
+          ]
+        },
+        {
+          "title": "Powertrain",
+          "rows": [
+            {
+              "k": "Type",
+              "v": "ICE / electric (swappable)"
+            },
+            {
+              "k": "Batteries",
+              "v": "1 pc"
+            },
+            {
+              "k": "Charging station",
+              "v": "1 pc"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "FHSS 430 MHz"
+            },
+            {
+              "k": "Range",
+              "v": "up to 100 km"
+            },
+            {
+              "k": "Navigation",
+              "v": "GNSS dual-stream, RTK"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Mode",
+              "v": "kamikaze drone"
+            },
+            {
+              "k": "Engines",
+              "v": "swap ICE / electric"
+            },
+            {
+              "k": "Mounts",
+              "v": "custom"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "5070 × 2100 × 750 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "120 кг"
+            },
+            {
+              "k": "Швидкість",
+              "v": "220 км/год"
+            },
+            {
+              "k": "Час польоту",
+              "v": "120 хв (ел.) / 420 хв (ДВС)"
+            }
+          ]
+        },
+        {
+          "title": "Силова установка",
+          "rows": [
+            {
+              "k": "Тип",
+              "v": "ДВС / електро (змінні)"
+            },
+            {
+              "k": "Акумулятори",
+              "v": "1 шт"
+            },
+            {
+              "k": "Зарядна станція",
+              "v": "1 шт"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "ППРЧ 430 МГц"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 100 км"
+            },
+            {
+              "k": "Навігація",
+              "v": "GNSS двопоточна, RTK"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Режим",
+              "v": "дрон-камікадзе"
+            },
+            {
+              "k": "Двигуни",
+              "v": "зміна ДВС / електро"
+            },
+            {
+              "k": "Кріплення",
+              "v": "під замовлення"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "Battery + charging station",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "АКБ + зарядна станція",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    },
+    "model3d": "/models/lrk5000.glb"
   },
   {
-    "id": "vl1040-motor",
-    "name": "VL1040 VTOL Motor",
-    "category": "vtol",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "VTOL propulsion motor for hybrid UAV platforms. Optimised for vertical takeoff and efficient forward flight at 12S.",
-    "specs": {
-      "KV": "150 KV",
-      "Weight": "1.2 kg",
-      "Voltage": "12S",
-      "Stator": "135×35 mm"
+    "id": "lrk-1700",
+    "category": "air",
+    "image": "/products/lrk1700.png",
+    "images": [
+      "/products/lrk1700.png"
+    ],
+    "name": {
+      "en": "ЛРК 1700",
+      "uk": "ЛРК 1700"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
-      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
-    ]
+    "tag": {
+      "en": "ARS 1700",
+      "uk": "ЛРК 1700"
+    },
+    "description": {
+      "en": "High-speed aerial platform (170 km/h) with 5 kg payload. Compact, can be used as a kamikaze drone.",
+      "uk": "Швидкісна літальна платформа (170 км/год) з вантажопідйомністю 5 кг. Компактна, з можливістю використання як дрон-камікадзе."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "5 kg",
+          "primary": true
+        },
+        {
+          "text": "170 km/h",
+          "primary": true
+        },
+        {
+          "text": "30 km Range",
+          "primary": false
+        },
+        {
+          "text": "Kamikaze",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "5 кг",
+          "primary": true
+        },
+        {
+          "text": "170 км/год",
+          "primary": true
+        },
+        {
+          "text": "Дальність 30 км",
+          "primary": false
+        },
+        {
+          "text": "Камікадзе",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "5",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "170",
+          "unit": "km/h",
+          "label": "Speed"
+        },
+        {
+          "value": "20",
+          "unit": "min",
+          "label": "Flight Time"
+        },
+        {
+          "value": "30",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "1",
+          "unit": "pc",
+          "label": "Battery"
+        }
+      ],
+      "uk": [
+        {
+          "value": "5",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "170",
+          "unit": "км/год",
+          "label": "Швидкість"
+        },
+        {
+          "value": "20",
+          "unit": "хв",
+          "label": "Час польоту"
+        },
+        {
+          "value": "30",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "1",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "5 kg",
+        "Speed": "170 km/h",
+        "Flight Time": "20 min",
+        "Range": "30 km",
+        "Battery": "1 pc"
+      },
+      "uk": {
+        "Вантажопідйомність": "5 кг",
+        "Швидкість": "170 км/год",
+        "Час польоту": "20 хв",
+        "Дальність": "30 км",
+        "АКБ": "1 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "1700 × 1200 × 250 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "5 kg"
+            },
+            {
+              "k": "Speed",
+              "v": "170 km/h"
+            },
+            {
+              "k": "Flight time",
+              "v": "20 min"
+            }
+          ]
+        },
+        {
+          "title": "Power",
+          "rows": [
+            {
+              "k": "Batteries",
+              "v": "1 pc"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "FHSS 430 MHz"
+            },
+            {
+              "k": "Range",
+              "v": "up to 30 km"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Mode",
+              "v": "kamikaze drone"
+            },
+            {
+              "k": "Mounts",
+              "v": "custom"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "1700 × 1200 × 250 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "5 кг"
+            },
+            {
+              "k": "Швидкість",
+              "v": "170 км/год"
+            },
+            {
+              "k": "Час польоту",
+              "v": "20 хв"
+            }
+          ]
+        },
+        {
+          "title": "Живлення",
+          "rows": [
+            {
+              "k": "Акумулятори",
+              "v": "1 шт"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "ППРЧ 430 МГц"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 30 км"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Режим",
+              "v": "дрон-камікадзе"
+            },
+            {
+              "k": "Кріплення",
+              "v": "під замовлення"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "Battery",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "АКБ",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    }
   },
   {
-    "id": "ax435-fixed",
-    "name": "AX435 Fixed-Wing Motor",
-    "category": "fixed-wing",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "Efficient fixed-wing motor for mapping and surveillance missions. Low noise, high reliability, 6S operation.",
-    "specs": {
-      "KV": "435 KV",
-      "Weight": "185 g",
-      "Voltage": "6S",
-      "Max Current": "35 A"
+    "id": "lrk-1100",
+    "category": "air",
+    "image": "/products/lrk1100.png",
+    "images": [
+      "/products/lrk1100.png"
+    ],
+    "name": {
+      "en": "ЛРК 1100",
+      "uk": "ЛРК 1100"
     },
-    "drawings": [
-      { "label": "Dimensional Drawing", "key": "drawing-dim.pdf", "type": "pdf" },
-      { "label": "CAD Model (STEP)",    "key": "model.step",       "type": "cad" }
-    ]
+    "tag": {
+      "en": "ARS 1100",
+      "uk": "ЛРК 1100"
+    },
+    "description": {
+      "en": "Long-range aerial platform (up to 120 km) at 170 km/h with 120 min flight time. 3.5 kg payload, can be used as a kamikaze drone.",
+      "uk": "Літальна платформа великої дальності (до 120 км) зі швидкістю 170 км/год та часом польоту 120 хв. Вантажопідйомність 3,5 кг, можливість використання як дрон-камікадзе."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "3.5 kg",
+          "primary": true
+        },
+        {
+          "text": "170 km/h",
+          "primary": true
+        },
+        {
+          "text": "120 km Range",
+          "primary": false
+        },
+        {
+          "text": "Kamikaze",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "3,5 кг",
+          "primary": true
+        },
+        {
+          "text": "170 км/год",
+          "primary": true
+        },
+        {
+          "text": "Дальність 120 км",
+          "primary": false
+        },
+        {
+          "text": "Камікадзе",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "3.5",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "170",
+          "unit": "km/h",
+          "label": "Speed"
+        },
+        {
+          "value": "120",
+          "unit": "min",
+          "label": "Flight Time"
+        },
+        {
+          "value": "120",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "1",
+          "unit": "pc",
+          "label": "Battery"
+        }
+      ],
+      "uk": [
+        {
+          "value": "3,5",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "170",
+          "unit": "км/год",
+          "label": "Швидкість"
+        },
+        {
+          "value": "120",
+          "unit": "хв",
+          "label": "Час польоту"
+        },
+        {
+          "value": "120",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "1",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "3.5 kg",
+        "Speed": "170 km/h",
+        "Flight Time": "120 min",
+        "Range": "120 km",
+        "Battery": "1 pc"
+      },
+      "uk": {
+        "Вантажопідйомність": "3,5 кг",
+        "Швидкість": "170 км/год",
+        "Час польоту": "120 хв",
+        "Дальність": "120 км",
+        "АКБ": "1 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "1700 × 1200 × 400 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "3.5 kg"
+            },
+            {
+              "k": "Speed",
+              "v": "170 km/h"
+            },
+            {
+              "k": "Flight time",
+              "v": "120 min"
+            }
+          ]
+        },
+        {
+          "title": "Power",
+          "rows": [
+            {
+              "k": "Batteries",
+              "v": "1 pc"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "FHSS 430 MHz"
+            },
+            {
+              "k": "Range",
+              "v": "up to 120 km"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Mode",
+              "v": "kamikaze drone"
+            },
+            {
+              "k": "Mounts",
+              "v": "custom"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "1700 × 1200 × 400 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "3,5 кг"
+            },
+            {
+              "k": "Швидкість",
+              "v": "170 км/год"
+            },
+            {
+              "k": "Час польоту",
+              "v": "120 хв"
+            }
+          ]
+        },
+        {
+          "title": "Живлення",
+          "rows": [
+            {
+              "k": "Акумулятори",
+              "v": "1 шт"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "ППРЧ 430 МГц"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 120 км"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Режим",
+              "v": "дрон-камікадзе"
+            },
+            {
+              "k": "Кріплення",
+              "v": "під замовлення"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "Battery",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "АКБ",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    }
   },
   {
-    "id": "airgear-350",
-    "name": "Airgear 350 Combo",
-    "category": "systems",
-    "image": "/products/placeholder.svg",
-    "images": ["/products/placeholder.svg"],
-    "description": "Complete propulsion system — motor, ESC and propellers pre-matched. Ready for integration into 350-class frames.",
-    "specs": {
-      "Motor": "MN3507",
-      "ESC": "V40A",
-      "Propellers": "14×4.8",
-      "System Voltage": "6S"
+    "id": "prk-13000",
+    "category": "sea",
+    "image": "/products/prk13000.png",
+    "images": [
+      "/products/prk13000.png"
+    ],
+    "name": {
+      "en": "ПРК 13000",
+      "uk": "ПРК 13000"
     },
-    "drawings": [
-      { "label": "System Diagram",   "key": "system-diagram.pdf", "type": "pdf" },
-      { "label": "Mounting Drawing", "key": "mounting.pdf",        "type": "pdf" }
-    ]
+    "tag": {
+      "en": "URS 13000 / 12",
+      "uk": "ПРК 13000 / 12"
+    },
+    "description": {
+      "en": "Large underwater robotic system with 1500 kg payload and 17 knots speed. Next-gen hydro-turbine, can be used as a carrier drone.",
+      "uk": "Великий підводний роботизований комплекс з вантажопідйомністю 1500 кг та швидкістю 17 вузлів. Гідротурбіна нового покоління, можливість використання як дрон-носій."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "1500 kg",
+          "primary": true
+        },
+        {
+          "text": "17 knots",
+          "primary": true
+        },
+        {
+          "text": "120 km Range",
+          "primary": false
+        },
+        {
+          "text": "Hydro-turbine",
+          "primary": false
+        },
+        {
+          "text": "Carrier",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "1500 кг",
+          "primary": true
+        },
+        {
+          "text": "17 вузлів",
+          "primary": true
+        },
+        {
+          "text": "Дальність 120 км",
+          "primary": false
+        },
+        {
+          "text": "Гідротурбіна",
+          "primary": false
+        },
+        {
+          "text": "Носій",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "1500",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "17",
+          "unit": "kn",
+          "label": "Speed"
+        },
+        {
+          "value": "120",
+          "unit": "min",
+          "label": "Runtime"
+        },
+        {
+          "value": "120",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "2",
+          "unit": "pcs",
+          "label": "Batteries"
+        }
+      ],
+      "uk": [
+        {
+          "value": "1500",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "17",
+          "unit": "вузл",
+          "label": "Швидкість"
+        },
+        {
+          "value": "120",
+          "unit": "хв",
+          "label": "Час роботи"
+        },
+        {
+          "value": "120",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "2",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "1500 kg",
+        "Speed": "17 kn",
+        "Runtime": "120 min",
+        "Range": "120 km",
+        "Batteries": "2 pcs"
+      },
+      "uk": {
+        "Вантажопідйомність": "1500 кг",
+        "Швидкість": "17 вузл",
+        "Час роботи": "120 хв",
+        "Дальність": "120 км",
+        "АКБ": "2 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "13000 × 6000 × 4500 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "1500 kg"
+            },
+            {
+              "k": "Speed",
+              "v": "17 knots"
+            },
+            {
+              "k": "Runtime",
+              "v": "120 min"
+            }
+          ]
+        },
+        {
+          "title": "Propulsion & Power",
+          "rows": [
+            {
+              "k": "Drive",
+              "v": "next-gen hydro-turbine"
+            },
+            {
+              "k": "Batteries",
+              "v": "2 pcs"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "FHSS 430 MHz"
+            },
+            {
+              "k": "Range",
+              "v": "up to 120 km"
+            },
+            {
+              "k": "Navigation",
+              "v": "GNSS dual-stream"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Mode",
+              "v": "carrier drone"
+            },
+            {
+              "k": "Mounts",
+              "v": "custom"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "13000 × 6000 × 4500 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "1500 кг"
+            },
+            {
+              "k": "Швидкість",
+              "v": "17 вузлів"
+            },
+            {
+              "k": "Час роботи",
+              "v": "120 хв"
+            }
+          ]
+        },
+        {
+          "title": "Рушій та живлення",
+          "rows": [
+            {
+              "k": "Двигун",
+              "v": "гідротурбіна нового покоління"
+            },
+            {
+              "k": "Акумулятори",
+              "v": "2 шт"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "ППРЧ 430 МГц"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 120 км"
+            },
+            {
+              "k": "Навігація",
+              "v": "GNSS двопоточна"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Режим",
+              "v": "дрон-носій"
+            },
+            {
+              "k": "Кріплення",
+              "v": "під замовлення"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "2 × batteries",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "2 × АКБ",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    },
+    "model3d": "/models/prk13000.glb"
+  },
+  {
+    "id": "prk-12000",
+    "category": "sea",
+    "image": "/products/prk12000.png",
+    "images": [
+      "/products/prk12000.png"
+    ],
+    "name": {
+      "en": "ПРК 12000",
+      "uk": "ПРК 12000"
+    },
+    "tag": {
+      "en": "URS 12000 / 8",
+      "uk": "ПРК 12000 / 8"
+    },
+    "description": {
+      "en": "Underwater robotic system with 1000 kg payload and 17 knots speed. Next-gen hydro-turbine, can be used as a carrier drone.",
+      "uk": "Підводний роботизований комплекс з вантажопідйомністю 1000 кг та швидкістю 17 вузлів. Гідротурбіна нового покоління, можливість використання як дрон-носій."
+    },
+    "badges": {
+      "en": [
+        {
+          "text": "1000 kg",
+          "primary": true
+        },
+        {
+          "text": "17 knots",
+          "primary": true
+        },
+        {
+          "text": "120 km Range",
+          "primary": false
+        },
+        {
+          "text": "Hydro-turbine",
+          "primary": false
+        },
+        {
+          "text": "Carrier",
+          "primary": false
+        }
+      ],
+      "uk": [
+        {
+          "text": "1000 кг",
+          "primary": true
+        },
+        {
+          "text": "17 вузлів",
+          "primary": true
+        },
+        {
+          "text": "Дальність 120 км",
+          "primary": false
+        },
+        {
+          "text": "Гідротурбіна",
+          "primary": false
+        },
+        {
+          "text": "Носій",
+          "primary": false
+        }
+      ]
+    },
+    "stats": {
+      "en": [
+        {
+          "value": "1000",
+          "unit": "kg",
+          "label": "Payload"
+        },
+        {
+          "value": "17",
+          "unit": "kn",
+          "label": "Speed"
+        },
+        {
+          "value": "120",
+          "unit": "min",
+          "label": "Runtime"
+        },
+        {
+          "value": "120",
+          "unit": "km",
+          "label": "Range"
+        },
+        {
+          "value": "2",
+          "unit": "pcs",
+          "label": "Batteries"
+        }
+      ],
+      "uk": [
+        {
+          "value": "1000",
+          "unit": "кг",
+          "label": "Вантажопідйомність"
+        },
+        {
+          "value": "17",
+          "unit": "вузл",
+          "label": "Швидкість"
+        },
+        {
+          "value": "120",
+          "unit": "хв",
+          "label": "Час роботи"
+        },
+        {
+          "value": "120",
+          "unit": "км",
+          "label": "Дальність"
+        },
+        {
+          "value": "2",
+          "unit": "шт",
+          "label": "АКБ"
+        }
+      ]
+    },
+    "specs": {
+      "en": {
+        "Payload": "1000 kg",
+        "Speed": "17 kn",
+        "Runtime": "120 min",
+        "Range": "120 km",
+        "Batteries": "2 pcs"
+      },
+      "uk": {
+        "Вантажопідйомність": "1000 кг",
+        "Швидкість": "17 вузл",
+        "Час роботи": "120 хв",
+        "Дальність": "120 км",
+        "АКБ": "2 шт"
+      }
+    },
+    "specGroups": {
+      "en": [
+        {
+          "title": "Platform",
+          "rows": [
+            {
+              "k": "Base size",
+              "v": "12000 × 5000 × 4000 mm"
+            },
+            {
+              "k": "Payload",
+              "v": "1000 kg"
+            },
+            {
+              "k": "Speed",
+              "v": "17 knots"
+            },
+            {
+              "k": "Runtime",
+              "v": "120 min"
+            }
+          ]
+        },
+        {
+          "title": "Propulsion & Power",
+          "rows": [
+            {
+              "k": "Drive",
+              "v": "next-gen hydro-turbine"
+            },
+            {
+              "k": "Batteries",
+              "v": "2 pcs"
+            }
+          ]
+        },
+        {
+          "title": "Comms & Navigation",
+          "rows": [
+            {
+              "k": "Radio link",
+              "v": "FHSS 430 MHz"
+            },
+            {
+              "k": "Range",
+              "v": "up to 120 km"
+            },
+            {
+              "k": "Navigation",
+              "v": "GNSS dual-stream"
+            },
+            {
+              "k": "Station",
+              "v": "all-in-one"
+            }
+          ]
+        },
+        {
+          "title": "Options",
+          "rows": [
+            {
+              "k": "Mode",
+              "v": "carrier drone"
+            },
+            {
+              "k": "Mounts",
+              "v": "custom"
+            },
+            {
+              "k": "Mobile station",
+              "v": "remote antennas"
+            }
+          ]
+        }
+      ],
+      "uk": [
+        {
+          "title": "Платформа",
+          "rows": [
+            {
+              "k": "Розмір бази",
+              "v": "12000 × 5000 × 4000 мм"
+            },
+            {
+              "k": "Вантажопідйомність",
+              "v": "1000 кг"
+            },
+            {
+              "k": "Швидкість",
+              "v": "17 вузлів"
+            },
+            {
+              "k": "Час роботи",
+              "v": "120 хв"
+            }
+          ]
+        },
+        {
+          "title": "Рушій та живлення",
+          "rows": [
+            {
+              "k": "Двигун",
+              "v": "гідротурбіна нового покоління"
+            },
+            {
+              "k": "Акумулятори",
+              "v": "2 шт"
+            }
+          ]
+        },
+        {
+          "title": "Зв'язок та навігація",
+          "rows": [
+            {
+              "k": "Радіозв'язок",
+              "v": "ППРЧ 430 МГц"
+            },
+            {
+              "k": "Дальність",
+              "v": "до 120 км"
+            },
+            {
+              "k": "Навігація",
+              "v": "GNSS двопоточна"
+            },
+            {
+              "k": "Станція",
+              "v": "усе в одному"
+            }
+          ]
+        },
+        {
+          "title": "Опції",
+          "rows": [
+            {
+              "k": "Режим",
+              "v": "дрон-носій"
+            },
+            {
+              "k": "Кріплення",
+              "v": "під замовлення"
+            },
+            {
+              "k": "Мобільна станція",
+              "v": "виносні антени"
+            }
+          ]
+        }
+      ]
+    },
+    "included": {
+      "en": [
+        "2 × batteries",
+        "All-in-one control station",
+        "Mobile station with remote antennas",
+        "Mounting kit (custom)"
+      ],
+      "uk": [
+        "2 × АКБ",
+        "Станція керування «усе в одному»",
+        "Мобільна станція з виносними антенами",
+        "Комплект кріплень (під замовлення)"
+      ]
+    }
   }
 ]

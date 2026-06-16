@@ -1,9 +1,34 @@
 [
-  { "id": "all", "name": "All Products", "slug": "all" },
-  { "id": "motors", "name": "Motors", "slug": "motors" },
-  { "id": "propellers", "name": "Propellers", "slug": "propellers" },
-  { "id": "escs", "name": "ESCs", "slug": "escs" },
-  { "id": "vtol", "name": "VTOL", "slug": "vtol" },
-  { "id": "fixed-wing", "name": "Fixed-Wing", "slug": "fixed-wing" },
-  { "id": "systems", "name": "Propulsion Systems", "slug": "systems" }
+  {
+    "id": "all",
+    "slug": "all",
+    "name": {
+      "en": "All Products",
+      "uk": "Усі вироби"
+    }
+  },
+  {
+    "id": "ground",
+    "slug": "ground",
+    "name": {
+      "en": "Ground Systems",
+      "uk": "Наземні системи"
+    }
+  },
+  {
+    "id": "air",
+    "slug": "air",
+    "name": {
+      "en": "Aerial Systems",
+      "uk": "Літальні системи"
+    }
+  },
+  {
+    "id": "sea",
+    "slug": "sea",
+    "name": {
+      "en": "Underwater Systems",
+      "uk": "Підводні системи"
+    }
+  }
 ]

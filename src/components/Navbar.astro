@@ -1,19 +1,45 @@
 ---
+import { useTranslations, localizePath, languages, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
 const currentPath = Astro.url.pathname;
+// часть пути после языкового сегмента: '/uk/catalog' -> 'catalog'
+const parts = currentPath.split('/').filter(Boolean);
+const rest = parts.slice(1).join('/');
+const restPath = rest ? '/' + rest : '/';
+
+function isActive(path: string) {
+  const target = localizePath(path, lang);
+  if (path === '/') return currentPath === target || currentPath === target + '/';
+  return currentPath.startsWith(target);
+}
+function switchHref(to: Lang) {
+  return localizePath(restPath, to);
+}
 ---
 
 <header class="nav-wrap">
   <nav class="nav-inner container">
-    <a href="/" class="nav-logo">
-      <span class="la">G</span>lobal<span class="la">R</span>obotex
+    <a href={localizePath('/', lang)} class="nav-logo">
+      <img src="/images/logo-mark.png" alt="GlobalRobotex" class="nav-mark" width="34" height="34" />
+      <span class="nav-word"><span class="la">G</span>lobal<span class="la">R</span>obotex</span>
     </a>
 
     <ul class="nav-links" id="nav-links">
-      <li><a href="/"        class={`nav-link ${currentPath === '/' ? 'active' : ''}`}>Home</a></li>
-      <li><a href="/catalog" class={`nav-link ${currentPath.startsWith('/catalog') ? 'active' : ''}`}>Catalog</a></li>
-      <li><a href="/about"   class={`nav-link ${currentPath === '/about' ? 'active' : ''}`}>About</a></li>
-      <li><a href="/contact" class={`nav-link ${currentPath === '/contact' ? 'active' : ''}`}>Contact</a></li>
+      <li><a href={localizePath('/', lang)}        class={`nav-link ${isActive('/') ? 'active' : ''}`}>{t('nav.home')}</a></li>
+      <li><a href={localizePath('/catalog', lang)} class={`nav-link ${isActive('/catalog') ? 'active' : ''}`}>{t('nav.catalog')}</a></li>
+      <li><a href={localizePath('/about', lang)}   class={`nav-link ${isActive('/about') ? 'active' : ''}`}>{t('nav.about')}</a></li>
+      <li><a href={localizePath('/contact', lang)} class={`nav-link ${isActive('/contact') ? 'active' : ''}`}>{t('nav.contact')}</a></li>
     </ul>
+
+    <div class="nav-lang" aria-label="Language">
+      {(Object.keys(languages) as Lang[]).map((l) => (
+        <a href={switchHref(l)} class={`lang-btn ${l === lang ? 'active' : ''}`} hreflang={l}>{languages[l]}</a>
+      ))}
+    </div>
 
     <button class="burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -47,10 +73,12 @@ const currentPath = Astro.url.pathname;
     padding: 0 24px;
   }
   .nav-logo {
+    display: flex; align-items: center; gap: 9px;
     font-size: 16px; font-weight: 800; letter-spacing: -0.01em;
     color: var(--t1); text-decoration: none; flex-shrink: 0;
     margin-right: 16px;
   }
+  .nav-mark { height: 34px; width: auto; display: block; }
   .la { color: var(--accent); }
 
   .nav-links {
@@ -65,10 +93,20 @@ const currentPath = Astro.url.pathname;
   .nav-link:hover { color: var(--t1); background: rgba(255,255,255,0.05); }
   .nav-link.active { color: var(--t1); background: rgba(255,255,255,0.07); }
 
+  .nav-lang { display: flex; gap: 2px; margin-left: auto; }
+  .lang-btn {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--t3); text-decoration: none;
+    padding: 5px 9px; border-radius: var(--r);
+    transition: color 0.15s, background 0.15s;
+  }
+  .lang-btn:hover { color: var(--t1); }
+  .lang-btn.active { color: var(--accent); background: var(--accent-t); }
+
   .burger {
     display: none; flex-direction: column; gap: 5px;
     background: none; border: none; cursor: pointer; padding: 4px;
-    margin-left: auto;
+    margin-left: 12px;
   }
   .burger span {
     display: block; width: 20px; height: 1.5px;
@@ -77,8 +115,12 @@ const currentPath = Astro.url.pathname;
   }
   .burger:hover span { background: var(--t1); }
 
+  @media (max-width: 720px) {
+    .nav-word { display: none; }
+  }
   @media (max-width: 640px) {
     .burger  { display: flex; }
+    .nav-lang { margin-left: auto; }
     .nav-links {
       display: none; position: absolute;
       top: 68px; left: 0; right: 0;

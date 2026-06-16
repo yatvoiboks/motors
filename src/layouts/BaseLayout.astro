@@ -4,19 +4,21 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  lang?: string;
 }
 
 const {
-  title = 'GlobalRobotex — UAV Components',
-  description = 'B2B manufacturer of high-precision propulsion components for industrial UAV systems: motors, ESCs, propellers.',
-  image = '/products/placeholder.svg',
+  title = 'GlobalRobotex — Unmanned Robotic Systems',
+  description = 'Manufacturer of unmanned ground, aerial and underwater robotic systems with in-house BLDC drives and ESCs.',
+  image = '/images/logo.png',
   noindex = false,
+  lang = 'en',
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -95,6 +97,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     margin: 0 auto;
     padding: 0 24px;
   }
+  /* Широкий контейнер для каталога и страницы товара */
+  .container-wide {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  @media (max-width: 640px) {
+    .container-wide { padding: 0 20px; }
+  }
 
   .section-label {
     font-size: 11px;
@@ -128,4 +139,54 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   }
   .badge-blue { background: var(--accent-t); color: var(--accent-h); border: 1px solid rgba(58,143,232,0.3); }
   .badge-gray { background: rgba(255,255,255,0.05); color: var(--t2); border: 1px solid var(--border); }
+
+  /* Product card (shared: server-rendered on home + JS-rendered in catalog) */
+  .card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--r-lg); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card-photo {
+    display: block; position: relative;
+    aspect-ratio: 4 / 3; background: var(--bg-2);
+    overflow: hidden; text-decoration: none;
+  }
+  .card-photo .photo-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 0.3s;
+  }
+  .card:hover .photo-img { transform: scale(1.04); }
+  .badge3d {
+    position: absolute; top: 10px; right: 10px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
+    padding: 3px 9px; border-radius: 20px;
+    background: var(--accent); color: #fff;
+  }
+  .card-body { padding: 14px 16px; flex: 1; }
+  .card-top { margin-bottom: 6px; }
+  .card .cat {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+  }
+  .card-name {
+    display: block; font-size: 16px; font-weight: 700;
+    color: var(--t1); text-decoration: none;
+    margin-bottom: 2px; line-height: 1.3; transition: color 0.15s;
+  }
+  .card-name:hover { color: var(--accent); }
+  .card-tag { font-size: 11px; color: var(--t3); font-family: var(--mono); margin-bottom: 8px; }
+  .card-desc { font-size: 12px; color: var(--t3); line-height: 1.6; margin-bottom: 12px; }
+  .card .specs {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 2px 14px; font-family: var(--mono); font-size: 11px;
+  }
+  .card .specs dt { color: var(--t3); white-space: nowrap; }
+  .card .specs dd { color: var(--accent-h); font-weight: 500; text-align: right; }
+  .card-footer {
+    padding: 10px 16px; border-top: 1px solid var(--border);
+    display: flex; gap: 8px; justify-content: flex-end;
+  }
 </style>

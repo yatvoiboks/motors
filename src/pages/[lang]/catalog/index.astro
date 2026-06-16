@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import HeroSection from '../../../components/HeroSection.astro';
+import CatalogClient from '../../../components/CatalogClient.astro';
+import products from '../../../data/products.json';
+import categories from '../../../data/categories.json';
+import { useTranslations, languages, type Lang } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return (Object.keys(languages) as Lang[]).map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={`${t('catalog.title')} | GlobalRobotex`} description={t('catalog.sub')}>
+  <Navbar lang={lang} />
+  <main>
+    <HeroSection lang={lang} title={t('catalog.title')} subtitle={t('catalog.sub')} />
+    <section class="py-12">
+      <div class="container-wide">
+        <CatalogClient products={products} categories={categories} initialCategory="all" perPage={12} lang={lang} />
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
+
+<style>
+  .py-12 { padding: 48px 0; }
+</style>
